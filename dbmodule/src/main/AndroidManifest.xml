@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="hr.foi.air.webshopapp.dbmodule">
+
+    <application android:name="com.activeandroid.app.Application" android:allowBackup="true" android:label="@string/app_name" android:supportsRtl="true">
+        <meta-data
+            android:name="AA_DB_NAME"
+            android:value="webshopapp.db" />
+        <meta-data
+            android:name="AA_DB_VERSION"
+            android:value="1" />
+    </application>
+
+</manifest>
