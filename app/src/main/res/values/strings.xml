@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">WebShopApp</string>
+    <string name="btnDodaj">Dodaj</string>
 </resources>
