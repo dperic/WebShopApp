@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     int majkemi;
 
+    int dodajemnestostanecupulat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
