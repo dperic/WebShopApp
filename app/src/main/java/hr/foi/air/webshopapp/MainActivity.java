@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.activeandroid.ActiveAndroid;
+
 import hr.foi.air.webshopapp.dbmodule.UserTable;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActiveAndroid.initialize(this);
         setContentView(R.layout.activity_main);
         btnUpdate = (Button) findViewById(R.id.btnDodaj);
         btnUpdate.setOnClickListener(this);
