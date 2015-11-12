@@ -1,5 +1,30 @@
 <resources>
     <string name="app_name">WebShopApp</string>
-    <string name="action_settings">Settings</string>
-    <string name="btnDodaj">gumbDodaj</string>
+
+    <string name="action_racunala">Računala</string>
+    <string name="action_komponente">Komponente</string>
+    <string name="action_oprema">Oprema</string>
+    <string name="search_icon">Search</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="login_icon">Login</string>
+
+    <string name="nav_item_main">Početna</string>
+    <string name="nav_item_kosarica">Košarica</string>
+    <string name="nav_item_katalog">Katalog</string>
+    <string name="nav_item_narudzbe">Narudžbe</string>
+
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_main</item>
+        <item>@string/nav_item_katalog</item>
+        <item>@string/nav_item_kosarica</item>
+        <item>@string/nav_item_narudzbe</item>
+    </string-array>
+
+    <string name="title_katalog">Katalog</string>
+    <string name="title_kosarica">Košarica</string>
+    <string name="title_narudzbe">Narudžbe</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
