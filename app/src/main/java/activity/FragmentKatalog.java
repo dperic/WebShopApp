@@ -1,7 +1,6 @@
 package activity;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,14 +9,6 @@ import android.view.ViewGroup;
 
 import hr.foi.air.webshopapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FragmentKatalog.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FragmentKatalog#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FragmentKatalog extends Fragment {
 
     public FragmentKatalog() {

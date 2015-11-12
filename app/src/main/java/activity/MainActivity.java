@@ -10,14 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+
 
 import hr.foi.air.webshopapp.R;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
 
-    private static String TAG = MainActivity.class.getSimpleName();
+
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -37,28 +37,18 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
 
-
-
-       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
-    /**
-     * Handles menu item clicks by overriding extended method.
-     * @param item Contains reference to the item that user clicked on.
-     * @return True if event is handled correctly.
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //Switch on item id.
-        //Currently there are no actions to perform.
+
         int id = item.getItemId();
 
         if(id==R.id.action_racunala){
@@ -75,8 +65,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
     private void displayView(int position) {
-
-
 
         Fragment fragment = null;
         String title = getString(R.string.app_name);

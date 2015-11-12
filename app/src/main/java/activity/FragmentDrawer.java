@@ -22,17 +22,9 @@ import adapter.NavigationDrawerAdapter;
 import hr.foi.air.webshopapp.R;
 import model.NavDrawerItem;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FragmentDrawer.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FragmentDrawer#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class FragmentDrawer extends Fragment {
 
-    private static String TAG = FragmentDrawer.class.getSimpleName();
 
     private RecyclerView recyclerView;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -54,7 +46,7 @@ public class FragmentDrawer extends Fragment {
         List<NavDrawerItem> data = new ArrayList<>();
 
 
-        // preparing navigation drawer items
+
         for (int i = 0; i < titles.length; i++) {
             NavDrawerItem navItem = new NavDrawerItem();
             navItem.setTitle(titles[i]);
@@ -67,14 +59,14 @@ public class FragmentDrawer extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // drawer labels
+
         titles = getActivity().getResources().getStringArray(R.array.nav_drawer_labels);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflating view layout
+
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
 
