@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 
+import com.activeandroid.ActiveAndroid;
+
 import hr.foi.air.webshopapp.R;
 
 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActiveAndroid.initialize(this);
         setContentView(R.layout.activity_main);
 
         mToolbar=(Toolbar)findViewById(R.id.toolbar);
@@ -100,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             // set the toolbar title
             getSupportActionBar().setTitle(title);
         }
+
     }
 
 
