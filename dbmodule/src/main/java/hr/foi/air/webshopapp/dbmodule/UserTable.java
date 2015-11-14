@@ -34,10 +34,10 @@ public class UserTable extends Model {
         Email = email;
     }
 
-    public static UserTable UpdateUser(String ime){
+    public static UserTable UpdateUser(){
         UserTable korisnik = new UserTable();
         // Log.d(ime.toString());
-        korisnik.Username = ime;
+        korisnik.Username = "imedodanog";
         korisnik.Adresa = "asd";
         korisnik.Email = "mail";
         korisnik.Ime = "zj";

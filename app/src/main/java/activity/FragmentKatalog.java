@@ -3,11 +3,13 @@ package activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.test.suitebuilder.annotation.SmallTest;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -73,8 +75,8 @@ public class FragmentKatalog extends Fragment implements View.OnClickListener {
                 List<Products> proizvodi = select.all().from(Products.class).execute();
                 StringBuilder builder = new StringBuilder();
                 for (Products products : proizvodi) {
-                    builder.append("Naziv: ")
-                            .append(products.naziv)
+                    builder.append("Datum: ")
+                            .append(products.datum_dodavanja)
                             .append("\n");
                     Toast.makeText(this.getActivity(), builder.toString(), Toast.LENGTH_SHORT).show();
                     break;
