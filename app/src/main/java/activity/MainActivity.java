@@ -1,5 +1,7 @@
 package activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -55,8 +57,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         int id = item.getItemId();
 
-        if(id==R.id.action_racunala){
-            return true;
+        if(id==R.id.login){
+            Intent intent = new Intent(this, FragmentLogin.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -68,7 +71,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     }
 
+
     private void displayView(int position) {
+
 
         Fragment fragment = null;
         String title = getString(R.string.app_name);
