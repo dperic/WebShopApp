@@ -1,7 +1,8 @@
 <resources>
-<style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
 
-</style>
+    <style name="MyMaterialTheme" parent="MyMaterialTheme.Base">
+
+    </style>
     <!-- Base application theme. -->
     <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -11,5 +12,9 @@
         <item name="colorAccent">@color/colorAccent</item>
 
     </style>
+
+    <style name="MyMaterialTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="MyMaterialTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

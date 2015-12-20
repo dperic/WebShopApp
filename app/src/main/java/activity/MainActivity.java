@@ -57,10 +57,16 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
         int id = item.getItemId();
 
-        if(id==R.id.login){
+
+
+        if(id==R.id.login_icon){
             Intent intent = new Intent(this, FragmentLogin.class);
             startActivity(intent);
         }
+
+
+
+
 
         return super.onOptionsItemSelected(item);
     }
