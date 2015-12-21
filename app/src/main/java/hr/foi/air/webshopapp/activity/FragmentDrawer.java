@@ -1,4 +1,4 @@
-package activity;
+package hr.foi.air.webshopapp.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import adapter.NavigationDrawerAdapter;
+import hr.foi.air.webshopapp.adapter.NavigationDrawerAdapter;
 import hr.foi.air.webshopapp.R;
 import model.NavDrawerItem;
 

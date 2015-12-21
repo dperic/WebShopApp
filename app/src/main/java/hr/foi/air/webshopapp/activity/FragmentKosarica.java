@@ -1,4 +1,4 @@
-package activity;
+package hr.foi.air.webshopapp.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -10,9 +10,8 @@ import android.view.ViewGroup;
 import hr.foi.air.webshopapp.R;
 
 
-public class FragmentMain extends Fragment {
-
-    public FragmentMain() {
+public class FragmentKosarica extends Fragment {
+    public FragmentKosarica() {
 
     }
 
@@ -25,7 +24,7 @@ public class FragmentMain extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_kosarica, container, false);
 
 
 
@@ -42,4 +41,3 @@ public class FragmentMain extends Fragment {
         super.onDetach();
     }
 }
-

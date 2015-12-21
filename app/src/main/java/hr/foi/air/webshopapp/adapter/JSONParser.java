@@ -1,4 +1,4 @@
-package adapter;
+package hr.foi.air.webshopapp.adapter;
 
 
 import android.util.Log;

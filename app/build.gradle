@@ -27,5 +27,6 @@ dependencies {
     compile 'com.android.support:design:23.0.1'
     compile 'com.android.support:recyclerview-v7:23.1.0'
     compile 'org.json:json:20090211'
+    compile 'com.mcxiaoke.volley:library-aar:1.0.0'
     compile project (':dbmodule')
 }
