@@ -15,7 +15,10 @@ import android.view.View;
 
 import com.activeandroid.ActiveAndroid;
 
+import java.util.HashMap;
+
 import hr.foi.air.webshopapp.R;
+import hr.foi.air.webshopapp.adapter.SQLiteHandler;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
@@ -24,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

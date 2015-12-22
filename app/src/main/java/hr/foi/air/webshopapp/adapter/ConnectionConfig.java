@@ -5,8 +5,8 @@ package hr.foi.air.webshopapp.adapter;
  */
 public class ConnectionConfig {
     // Server user login url
-    public static String URL_LOGIN = "localhost/android_login_api/login.php";
+    public static String URL_LOGIN = "192.168.1.6/android_login_api/login.php";
 
     // Server user register url
-    public static String URL_REGISTER = "localhost/android_login_api/register.php";
+    public static String URL_REGISTER = "192.168.1.6/android_login_api/register.php";
 }
