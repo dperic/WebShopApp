@@ -36,19 +36,18 @@ public class FragmentLogin extends Activity{
     private Button buttonLogin;
     private Button buttonRegister;
 
-    private String username;
-    private String password;
+    public String username = null;
+    public String password = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_login);
 
-        editTextUsername = (EditText) findViewById(R.id.editTextUsername);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextUsername = (EditText) findViewById(R.id.username);
+        editTextPassword = (EditText) findViewById(R.id.password);
 
         buttonLogin = (Button) findViewById(R.id.btnLogin);
-
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 userLogin();
@@ -65,12 +64,14 @@ public class FragmentLogin extends Activity{
                 finish();
             }
         });
+
+
     }
 
 
     private void userLogin() {
-        username = editTextUsername.getText().toString().trim();
-        password = editTextPassword.getText().toString().trim();
+//        username = editTextUsername.getText().toString().trim();
+//        password = editTextPassword.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL,
                 new Response.Listener<String>() {
@@ -91,7 +92,9 @@ public class FragmentLogin extends Activity{
                 }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> map = new HashMap<String,String>();
+                username = editTextUsername.getText().toString().trim();
+                password = editTextPassword.getText().toString().trim();
+                Map<String,String> map = new HashMap();
                 map.put(KEY_USERNAME,username);
                 map.put(KEY_PASSWORD,password);
                 return map;
@@ -103,7 +106,8 @@ public class FragmentLogin extends Activity{
     }
 
     private void openProfile(){
-        Intent intent = new Intent(this, FragmentUserProfile.class);
+        Intent intent = new Intent(getApplicationContext(),
+                FragmentUserProfile.class);
         intent.putExtra(KEY_USERNAME, username);
         startActivity(intent);
     }
