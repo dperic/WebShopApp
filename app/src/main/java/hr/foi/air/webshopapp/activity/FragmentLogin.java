@@ -26,7 +26,7 @@ import hr.foi.air.webshopapp.R;
  */
 public class FragmentLogin extends Activity{
 
-    public static final String LOGIN_URL = "http://192.168.1.6/webservices/volleyLogin.php";
+    public static final String LOGIN_URL = "http://webshopappfoi.esy.es/volleyLogin.php";
 
     public static final String KEY_USERNAME="username";
     public static final String KEY_PASSWORD="password";

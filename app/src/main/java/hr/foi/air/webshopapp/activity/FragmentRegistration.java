@@ -21,7 +21,7 @@ import hr.foi.air.webshopapp.R;
 
 public class FragmentRegistration extends Activity{
 
-    public static final String REGISTER_URL = "http://192.168.1.6/webservices/volleyRegister.php";
+    public static final String REGISTER_URL = "http://webshopappfoi.esy.es/volleyRegister.php";
 
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
