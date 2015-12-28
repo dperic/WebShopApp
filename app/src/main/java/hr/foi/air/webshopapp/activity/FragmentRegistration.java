@@ -26,10 +26,16 @@ public class FragmentRegistration extends Activity{
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_EMAIL = "email";
+    public static final String KEY_NAME = "name";
+    public static final String KEY_SURNAME = "surname";
+    public static final String KEY_ADDRESS = "address";
 
     private EditText editTextUsername;
     private EditText editTextEmail;
     private EditText editTextPassword;
+    private EditText editTextName;
+    private EditText editTextSurname;
+    private EditText editTextAddress;
 
     private Button buttonRegister;
 
@@ -41,7 +47,7 @@ public class FragmentRegistration extends Activity{
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                registerUser();
+                checkInput();
             }
         });
 
@@ -49,20 +55,36 @@ public class FragmentRegistration extends Activity{
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         editTextEmail= (EditText) findViewById(R.id.editTextEmail);
+        editTextName= (EditText) findViewById(R.id.editTextName);
+        editTextSurname = (EditText) findViewById(R.id.editTextSurname);
+        editTextAddress= (EditText) findViewById(R.id.editTextAddress);
 
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View v) {
-                registerUser();
+                checkInput();
             }
         });
+    }
+
+    public void checkInput(){
+        String errorText = "Enter all details";
+        if (editTextAddress.getText().length()!=0 && editTextSurname.getText().length()!=0 && editTextName.getText().length()!=0 && editTextEmail.getText().length()!=0 && editTextPassword.getText().length()!=0 && editTextUsername.getText().length()!=0){
+            registerUser();}
+        else{
+            Toast.makeText(FragmentRegistration.this, errorText, Toast.LENGTH_LONG).show();}
+
     }
 
     public void registerUser() {
         final String username = editTextUsername.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
         final String email = editTextEmail.getText().toString().trim();
+        final String name = editTextName.getText().toString().trim();
+        final String surname = editTextSurname.getText().toString().trim();
+        final String address = editTextAddress.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
                 new Response.Listener<String>() {
@@ -83,11 +105,13 @@ public class FragmentRegistration extends Activity{
                 params.put(KEY_USERNAME,username);
                 params.put(KEY_PASSWORD,password);
                 params.put(KEY_EMAIL, email);
+                params.put(KEY_NAME, name);
+                params.put(KEY_SURNAME, surname);
+                params.put(KEY_ADDRESS, address);
                 return params;
             }
 
         };
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }

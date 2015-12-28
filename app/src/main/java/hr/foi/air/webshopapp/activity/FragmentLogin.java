@@ -50,7 +50,10 @@ public class FragmentLogin extends Activity{
         buttonLogin = (Button) findViewById(R.id.btnLogin);
         buttonLogin.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                userLogin();
+                if (editTextUsername.getText().length()!=0 && editTextPassword.getText().length()!=0)
+                    userLogin();
+                else
+                    Toast.makeText(FragmentLogin.this, "Enter your credentials or register", Toast.LENGTH_LONG).show();
             }
         });
 

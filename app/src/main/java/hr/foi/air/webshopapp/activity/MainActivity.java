@@ -15,10 +15,7 @@ import android.view.View;
 
 import com.activeandroid.ActiveAndroid;
 
-import java.util.HashMap;
-
 import hr.foi.air.webshopapp.R;
-import hr.foi.air.webshopapp.adapter.SQLiteHandler;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
