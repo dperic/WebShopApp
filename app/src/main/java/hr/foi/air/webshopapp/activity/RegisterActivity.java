@@ -1,7 +1,10 @@
 package hr.foi.air.webshopapp.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,10 +19,12 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import hr.foi.air.webshopapp.R;
 
-public class FragmentRegistration extends Activity{
+public class RegisterActivity extends AppCompatActivity{
 
     public static final String REGISTER_URL = "http://webshopappfoi.esy.es/volleyRegister.php";
 
@@ -39,10 +44,19 @@ public class FragmentRegistration extends Activity{
 
     private Button buttonRegister;
 
+    private Toolbar mToolbar;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_registration);
+        setContentView(R.layout.activity_register);
+
+        mToolbar=(Toolbar)findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +88,7 @@ public class FragmentRegistration extends Activity{
         if (editTextAddress.getText().length()!=0 && editTextSurname.getText().length()!=0 && editTextName.getText().length()!=0 && editTextEmail.getText().length()!=0 && editTextPassword.getText().length()!=0 && editTextUsername.getText().length()!=0){
             registerUser();}
         else{
-            Toast.makeText(FragmentRegistration.this, errorText, Toast.LENGTH_LONG).show();}
+            Toast.makeText(RegisterActivity.this, errorText, Toast.LENGTH_LONG).show();}
 
     }
 
@@ -90,13 +104,13 @@ public class FragmentRegistration extends Activity{
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(FragmentRegistration.this, response, Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterActivity.this, response, Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(FragmentRegistration.this,error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegisterActivity.this,error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }){
             @Override
@@ -114,5 +128,23 @@ public class FragmentRegistration extends Activity{
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                Intent intent1 = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent1);
+                finishscreen();
+            }
+        };
+        Timer t = new Timer();
+        t.schedule(task, 2000);
+
     }
+    private void finishscreen(){
+
+        this.finish();
+    }
+
+
 }

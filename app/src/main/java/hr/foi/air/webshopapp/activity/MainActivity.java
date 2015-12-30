@@ -16,11 +16,14 @@ import android.view.View;
 import com.activeandroid.ActiveAndroid;
 
 import hr.foi.air.webshopapp.R;
+import hr.foi.air.webshopapp.fragmenti.FragmentDrawer;
+import hr.foi.air.webshopapp.fragmenti.FragmentKatalog;
+import hr.foi.air.webshopapp.fragmenti.FragmentKosarica;
+import hr.foi.air.webshopapp.fragmenti.FragmentMain;
+import hr.foi.air.webshopapp.fragmenti.FragmentNarudzbe;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
-
-
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
 
         if(id==R.id.login_icon){
-            Intent intent = new Intent(this, FragmentLogin.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
 

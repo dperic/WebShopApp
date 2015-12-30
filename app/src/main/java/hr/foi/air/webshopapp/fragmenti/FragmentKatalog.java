@@ -1,4 +1,4 @@
-package hr.foi.air.webshopapp.activity;
+package hr.foi.air.webshopapp.fragmenti;
 
 import android.app.Activity;
 import android.os.Bundle;

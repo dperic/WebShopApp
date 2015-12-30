@@ -1,4 +1,4 @@
-package hr.foi.air.webshopapp.activity;
+package hr.foi.air.webshopapp.fragmenti;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -25,9 +25,6 @@ public class FragmentKosarica extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_kosarica, container, false);
-
-
-
         return rootView;
     }
 

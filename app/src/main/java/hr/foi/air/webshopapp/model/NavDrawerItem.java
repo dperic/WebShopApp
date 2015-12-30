@@ -1,8 +1,5 @@
-package model;
+package hr.foi.air.webshopapp.model;
 
-/**
- * Created by Dario on 10.11.2015..
- */
 public class NavDrawerItem {
     private boolean showNotify;
     private String title;

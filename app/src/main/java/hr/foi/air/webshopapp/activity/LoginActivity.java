@@ -3,6 +3,8 @@ package hr.foi.air.webshopapp.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,10 +23,8 @@ import java.util.Map;
 
 import hr.foi.air.webshopapp.R;
 
-/**
- * Created by zoky4 on 18-Dec-15.
- */
-public class FragmentLogin extends Activity{
+
+public class LoginActivity extends AppCompatActivity{
 
     public static final String LOGIN_URL = "http://webshopappfoi.esy.es/volleyLogin.php";
 
@@ -39,10 +39,18 @@ public class FragmentLogin extends Activity{
     public String username = null;
     public String password = null;
 
+    private Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_login);
+        setContentView(R.layout.activity_login);
+
+        mToolbar=(Toolbar)findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         editTextUsername = (EditText) findViewById(R.id.username);
         editTextPassword = (EditText) findViewById(R.id.password);
@@ -53,7 +61,7 @@ public class FragmentLogin extends Activity{
                 if (editTextUsername.getText().length()!=0 && editTextPassword.getText().length()!=0)
                     userLogin();
                 else
-                    Toast.makeText(FragmentLogin.this, "Enter your credentials or register", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Enter your credentials or register", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -62,7 +70,7 @@ public class FragmentLogin extends Activity{
 
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(),
-                        FragmentRegistration.class);
+                        RegisterActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -83,14 +91,14 @@ public class FragmentLogin extends Activity{
                         if(response.trim().equals("success")){
                             openProfile();
                         }else{
-                            Toast.makeText(FragmentLogin.this, response, Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, response, Toast.LENGTH_LONG).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(FragmentLogin.this,error.toString(),Toast.LENGTH_LONG ).show();
+                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_LONG ).show();
                     }
                 }){
             @Override
@@ -110,8 +118,12 @@ public class FragmentLogin extends Activity{
 
     private void openProfile(){
         Intent intent = new Intent(getApplicationContext(),
-                FragmentUserProfile.class);
+                UserProfileActivity.class);
         intent.putExtra(KEY_USERNAME, username);
         startActivity(intent);
+
+
     }
+
+
 }

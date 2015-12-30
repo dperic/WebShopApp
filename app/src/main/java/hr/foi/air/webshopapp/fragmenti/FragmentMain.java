@@ -1,7 +1,6 @@
-package hr.foi.air.webshopapp.activity;
+package hr.foi.air.webshopapp.fragmenti;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +9,10 @@ import android.view.ViewGroup;
 
 import hr.foi.air.webshopapp.R;
 
-public class FragmentNarudzbe extends Fragment {
 
-    public FragmentNarudzbe() {
+public class FragmentMain extends Fragment {
+
+    public FragmentMain() {
 
     }
 
@@ -25,10 +25,7 @@ public class FragmentNarudzbe extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_narudzbe, container, false);
-
-
-
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         return rootView;
     }
 
@@ -42,3 +39,4 @@ public class FragmentNarudzbe extends Fragment {
         super.onDetach();
     }
 }
+

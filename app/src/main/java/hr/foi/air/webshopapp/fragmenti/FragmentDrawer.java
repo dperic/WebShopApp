@@ -1,4 +1,4 @@
-package hr.foi.air.webshopapp.activity;
+package hr.foi.air.webshopapp.fragmenti;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -20,7 +20,7 @@ import java.util.List;
 
 import hr.foi.air.webshopapp.adapter.NavigationDrawerAdapter;
 import hr.foi.air.webshopapp.R;
-import model.NavDrawerItem;
+import hr.foi.air.webshopapp.model.NavDrawerItem;
 
 
 public class FragmentDrawer extends Fragment {
@@ -44,8 +44,6 @@ public class FragmentDrawer extends Fragment {
 
     public static List<NavDrawerItem> getData() {
         List<NavDrawerItem> data = new ArrayList<>();
-
-
 
         for (int i = 0; i < titles.length; i++) {
             NavDrawerItem navItem = new NavDrawerItem();

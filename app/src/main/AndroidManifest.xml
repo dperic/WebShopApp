@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.FragmentLogin"
+            android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/MyMaterialTheme">
@@ -26,23 +26,23 @@
                 android:value=".activity.MainActivity" />
         </activity>
         <activity
-            android:name=".activity.FragmentRegistration"
+            android:name=".activity.RegisterActivity"
             android:label="@string/title_activity_registration"
-            android:parentActivityName=".activity.MainActivity"
+            android:parentActivityName=".activity.LoginActivity"
             android:theme="@style/MyMaterialTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MainActivity" />
+                android:value=".activity.LoginActivity" />
         </activity>
 
         <activity
-            android:name=".activity.FragmentUserProfile"
+            android:name=".activity.UserProfileActivity"
             android:label="@string/title_fragment_user_profile"
-            android:parentActivityName=".activity.MainActivity"
+            android:parentActivityName=".activity.LoginActivity"
             android:theme="@style/MyMaterialTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MainActivity" />
+                android:value=".activity.LoginActivity" />
         </activity>
     </application>
 

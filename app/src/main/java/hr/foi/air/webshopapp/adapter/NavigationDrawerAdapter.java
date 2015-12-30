@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import hr.foi.air.webshopapp.R;
-import model.NavDrawerItem;
+import hr.foi.air.webshopapp.model.NavDrawerItem;
 
 public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDrawerAdapter.MyViewHolder> {
     List<NavDrawerItem> data = Collections.emptyList();
