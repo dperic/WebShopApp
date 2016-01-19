@@ -44,6 +44,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.LoginActivity" />
         </activity>
+
+        <activity
+            android:name=".activity.LoadImageActivity"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/MyMaterialTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
+        </activity>
+
     </application>
 
 </manifest>
