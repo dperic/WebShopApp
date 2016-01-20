@@ -1,7 +1,7 @@
 package hr.foi.air.webshopapp.activity;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,7 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +39,10 @@ public class LoginActivity extends AppCompatActivity{
     public String password = null;
 
     private Toolbar mToolbar;
+
+    SharedPreferences SessionManager;
+    public static final String UserName = "userNameKey";
+    public static final String dateTime = "dateTimeKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +84,24 @@ public class LoginActivity extends AppCompatActivity{
 
 
     private void userLogin() {
-//        username = editTextUsername.getText().toString().trim();
-//        password = editTextPassword.getText().toString().trim();
+        username = editTextUsername.getText().toString().trim();
+        password = editTextPassword.getText().toString().trim();
+        final Date currDate = new Date();
+        final Long timeDate = currDate.getTime();
+        SessionManager = getSharedPreferences("SessionManager", MODE_PRIVATE);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if(response.trim().equals("success")){
+
+                            SharedPreferences.Editor editorSession = SessionManager.edit();
+                            editorSession.putString(UserName, username);
+                            editorSession.putLong(dateTime, timeDate);
+                            editorSession.apply();
+                            Toast.makeText(LoginActivity.this, "Session details are saved on "+ currDate, Toast.LENGTH_LONG).show();
+
                             openProfile();
                         }else{
                             Toast.makeText(LoginActivity.this, response, Toast.LENGTH_LONG).show();
@@ -103,8 +116,9 @@ public class LoginActivity extends AppCompatActivity{
                 }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                username = editTextUsername.getText().toString().trim();
-                password = editTextPassword.getText().toString().trim();
+
+
+
                 Map<String,String> map = new HashMap();
                 map.put(KEY_USERNAME,username);
                 map.put(KEY_PASSWORD,password);
@@ -121,8 +135,6 @@ public class LoginActivity extends AppCompatActivity{
                 UserProfileActivity.class);
         intent.putExtra(KEY_USERNAME, username);
         startActivity(intent);
-
-
     }
 
 

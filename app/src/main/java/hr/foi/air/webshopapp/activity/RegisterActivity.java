@@ -76,7 +76,6 @@ public class RegisterActivity extends AppCompatActivity{
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
                 checkInput();
             }
@@ -89,7 +88,6 @@ public class RegisterActivity extends AppCompatActivity{
             registerUser();}
         else{
             Toast.makeText(RegisterActivity.this, errorText, Toast.LENGTH_LONG).show();}
-
     }
 
     public void registerUser() {
@@ -113,6 +111,8 @@ public class RegisterActivity extends AppCompatActivity{
                         Toast.makeText(RegisterActivity.this,error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }){
+
+
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
@@ -124,7 +124,6 @@ public class RegisterActivity extends AppCompatActivity{
                 params.put(KEY_ADDRESS, address);
                 return params;
             }
-
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
@@ -137,12 +136,13 @@ public class RegisterActivity extends AppCompatActivity{
                 finishscreen();
             }
         };
+
+
         Timer t = new Timer();
         t.schedule(task, 2000);
 
     }
     private void finishscreen(){
-
         this.finish();
     }
 

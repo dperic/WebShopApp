@@ -1,6 +1,7 @@
 package hr.foi.air.webshopapp.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +15,10 @@ import android.view.View;
 
 
 import com.activeandroid.ActiveAndroid;
+
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import hr.foi.air.webshopapp.R;
 import hr.foi.air.webshopapp.fragmenti.FragmentDrawer;
@@ -57,18 +62,25 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+        Date currentDate = new Date();
 
+        SharedPreferences sessionMan = getBaseContext().getSharedPreferences("SessionManager", MODE_PRIVATE);
+        String userName = sessionMan.getString("UserName", "");
+        Date sessionDate = new Date(sessionMan.getLong("dateTime", 0));
+        Long passedTimeDays = TimeUnit.MILLISECONDS.toDays(currentDate.getTime() - sessionDate.getTime());
 
 
         if(id==R.id.login_icon){
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+            if (passedTimeDays > 1 || sessionMan == null) {
+                sessionMan.edit().clear();
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+            }
+            else {
+                Intent intent = new Intent(this, UserProfileActivity.class);
+                startActivity(intent);
+            }
         }
-
-
-
-
-
         return super.onOptionsItemSelected(item);
     }
 
