@@ -101,7 +101,6 @@ public class LoginActivity extends AppCompatActivity{
                             editorSession.putLong(dateTime, timeDate);
                             editorSession.apply();
                             Toast.makeText(LoginActivity.this, "Session details are saved on "+ currDate, Toast.LENGTH_LONG).show();
-
                             openProfile();
                         }else{
                             Toast.makeText(LoginActivity.this, response, Toast.LENGTH_LONG).show();

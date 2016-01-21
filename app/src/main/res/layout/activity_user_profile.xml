@@ -17,10 +17,6 @@
             android:orientation="vertical"
             android:layout_gravity="top">
 
-            <include
-                android:id="@+id/toolbar"
-                layout="@layout/toolbar" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -33,13 +29,20 @@
             android:paddingRight="20dp"
             android:weightSum="1">
 
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="142dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save changes"
-                android:id="@+id/buttonSave"
-                android:layout_gravity="right" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Logged in:"
+                android:id="@+id/textView4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="..."
+                android:id="@+id/txtLoginTime"
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,7 +52,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editTextUsername" />
+                android:id="@+id/editTextUsername"
+                android:editable="false" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,7 +73,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:password="true"
+                android:password="false"
                 android:id="@+id/editTextPassword" />
 
             <TextView
@@ -118,6 +122,13 @@
                 android:id="@+id/buttonLogOut"
                 android:clickable="true"
                 android:textColor="@color/btn_login_bg"/>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="142dp"
+                android:layout_height="wrap_content"
+                android:text="Save changes"
+                android:id="@+id/buttonSave" />
         </LinearLayout>
 
     </LinearLayout>

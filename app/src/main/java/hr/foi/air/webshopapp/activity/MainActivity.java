@@ -62,17 +62,12 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        Date currentDate = new Date();
 
         SharedPreferences sessionMan = getBaseContext().getSharedPreferences("SessionManager", MODE_PRIVATE);
-        String userName = sessionMan.getString("UserName", "");
-        Date sessionDate = new Date(sessionMan.getLong("dateTime", 0));
-        Long passedTimeDays = TimeUnit.MILLISECONDS.toDays(currentDate.getTime() - sessionDate.getTime());
-
+        String sessionLogged = sessionMan.getString("userNameKey", null);
 
         if(id==R.id.login_icon){
-            if (passedTimeDays > 1 || sessionMan == null) {
-                sessionMan.edit().clear();
+            if (sessionLogged == null) {
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
             }
