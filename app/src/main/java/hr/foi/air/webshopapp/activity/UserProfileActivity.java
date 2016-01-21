@@ -2,17 +2,17 @@ package hr.foi.air.webshopapp.activity;
 
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Config;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -23,11 +23,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import hr.foi.air.webshopapp.R;
 
 public class UserProfileActivity extends AppCompatActivity{
 
-    public static final String URL = "http://webshopappfoi.esy.es/dbGetUser.php?username=";
+    public static final String profileURL = "http://webshopappfoi.esy.es/dbGetUser.php?username=";
+    public static final String SAVE_URL = "http://webshopappfoi.esy.es/volleyChangeUserDetails.php";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PASSWORD= "password";
@@ -46,6 +52,7 @@ public class UserProfileActivity extends AppCompatActivity{
     private ProgressDialog loading;
 
     private Button btnLogout;
+    private Button btnSave;
     SharedPreferences LoggedInUser;
 
     @Override
@@ -59,6 +66,7 @@ public class UserProfileActivity extends AppCompatActivity{
         edtPassword = (EditText) findViewById(R.id.editTextPassword);
         edtUsername = (EditText) findViewById(R.id.editTextUsername);
         btnLogout = (Button) findViewById(R.id.buttonLogOut);
+        btnSave = (Button) findViewById(R.id.buttonSave);
         LoggedInUser = getSharedPreferences("SessionManager", MODE_PRIVATE);
         final SharedPreferences.Editor editLogged = LoggedInUser.edit();
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -69,15 +77,19 @@ public class UserProfileActivity extends AppCompatActivity{
             }
         });
         GetUserData();
+
+        btnSave.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                saveUser();
+            }
+        });
         }
 
     public void GetUserData(){
-
-        String userName = LoggedInUser.getString("UserName", "");
-
         loading = ProgressDialog.show(this, "Please wait...", "Fetching...", false, false);
 
-        String url = URL+LoggedInUser.getString("userNameKey", "").toString().trim();
+        String url = profileURL +LoggedInUser.getString("userNameKey", "").toString().trim();
 
         StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -113,8 +125,61 @@ public class UserProfileActivity extends AppCompatActivity{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        //textViewResult.setText("Name:\t"+name+"\nAddress:\t" +address+ "\nVice Chancellor:\t"+ vc);
     }
+    public void saveUser() {
+        final String username = edtUsername.getText().toString().trim();
+        final String password = edtPassword.getText().toString().trim();
+        final String email = edtEmail.getText().toString().trim();
+        final String name = edtName.getText().toString().trim();
+        final String surname = edtSurname.getText().toString().trim();
+        final String address = edtAddress.getText().toString().trim();
 
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, SAVE_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(UserProfileActivity.this, response, Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(UserProfileActivity.this,error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                }){
+
+
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put(KEY_USERNAME,username);
+                params.put(KEY_PASSWORD,password);
+                params.put(KEY_EMAIL, email);
+                params.put(KEY_NAME, name);
+                params.put(KEY_SURNAME, surname);
+                params.put(KEY_ADDRESS, address);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                Intent intent1 = new Intent(UserProfileActivity.this, MainActivity.class);
+                startActivity(intent1);
+                finishscreen();
+            }
+        };
+
+
+        Timer t = new Timer();
+        t.schedule(task, 2000);
+
+    }
+    private void finishscreen(){
+        this.finish();
+    }
 
 }
