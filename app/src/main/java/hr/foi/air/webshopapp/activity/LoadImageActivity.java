@@ -21,6 +21,7 @@ public class LoadImageActivity extends Activity {
             "https://z-1-scontent-fra3-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/" +
                     "12249763_10208301005585772_4441425751759241085_n.jpg?oh=a0186b143e170f27d00a9fb99017f05f&oe=5705AF2B"};
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
