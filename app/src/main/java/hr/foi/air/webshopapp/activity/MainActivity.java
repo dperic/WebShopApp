@@ -12,15 +12,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 
 import com.activeandroid.ActiveAndroid;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import hr.foi.air.webshopapp.R;
+import hr.foi.air.webshopapp.dbmodule.ParseJSON;
+import hr.foi.air.webshopapp.dbmodule.product;
 import hr.foi.air.webshopapp.fragmenti.FragmentDrawer;
 import hr.foi.air.webshopapp.fragmenti.FragmentKatalog;
 import hr.foi.air.webshopapp.fragmenti.FragmentKosarica;
@@ -32,6 +40,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
+    public static final String JSON_URL = "http://webshopappfoi.esy.es/volleyGetProducts.php";
+    SharedPreferences productsLocal;
+    public static final String Products = "productsKey";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         drawerFragment.setDrawerListener(this);
         displayView(0);
 
+        sendSyncRequest();
     }
 
     @Override
@@ -125,6 +138,28 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     }
 
+    private void sendSyncRequest(){
+
+        StringRequest stringRequest = new StringRequest(JSON_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        product product = new product();
+                        product.UpdateProducts(response);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
 
 
 }
