@@ -61,7 +61,6 @@ public class product extends Model {
             proizvod.category = pj.categories[i];
             proizvod.date_added = pj.dates[i];
             proizvod.save();
-
         }
         return null;
     }

@@ -53,6 +53,7 @@ public class ImageAdapter extends ArrayAdapter<String> {
         return convertView;
     }
 
+
     private class DownloadAsyncTask extends AsyncTask<ViewHolder, Void, ViewHolder> {
 
         @Override

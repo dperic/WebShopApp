@@ -32,7 +32,6 @@
     <string name="title_fragment_user_profile">User profile</string>
 
 
-
     <string name="title_activity_registration">Register</string>
     <string name="btnRegister">Register</string>
 
@@ -48,4 +47,5 @@
     <string name="name">Full name</string>
     <string name="title_username">hint_username</string>
     <string name="listitem_image">slika u retku</string>
+    <string name="title_activity_product_details">ProductDetailsActivity</string>
 </resources>

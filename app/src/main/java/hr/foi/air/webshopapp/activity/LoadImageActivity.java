@@ -5,8 +5,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.activeandroid.query.Select;
+
 import hr.foi.air.webshopapp.R;
 import hr.foi.air.webshopapp.adapter.ImageAdapter;
+import hr.foi.air.webshopapp.dbmodule.product;
 
 
 public class LoadImageActivity extends Activity {
@@ -31,5 +34,4 @@ public class LoadImageActivity extends Activity {
         ImageAdapter imageAdapter = new ImageAdapter(this, R.layout.image_item, imageURLArray);
         listView.setAdapter(imageAdapter);
     }
-
 }

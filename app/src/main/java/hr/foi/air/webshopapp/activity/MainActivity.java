@@ -89,6 +89,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 startActivity(intent);
             }
         }
+        if(id==R.id.search_icon){
+            Intent intent = new Intent(this, ProductDetailsActivity.class);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 
