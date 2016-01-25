@@ -16,7 +16,7 @@ public class ProductDetailsActivity extends AppCompatActivity{
     public TextView txtStock;
     public TextView txtDescription;
     ImageView imageView;
-    int remoteID = 0;
+    int remoteID = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

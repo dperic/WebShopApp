@@ -164,6 +164,4 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
-
 }
