@@ -5,7 +5,6 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Delete;
-
 import adapter.ParseJSON;
 
 
@@ -55,24 +54,26 @@ public class product extends Model {
         for (int i = 0; i < pj.ids.length;i++)
         {
             product proizvod = new product();
-
             try {
                 new Delete().from(product.class).where("remoteId = ?", pj.ids[i]).execute();
             }
             catch (Exception e){
                 return null;
             }
-
-            proizvod.remoteId = pj.ids[i];
-            proizvod.name = pj.names[i];
-            proizvod.price = Double.valueOf(pj.pricess[i]);
-            proizvod.stock = pj.stock[i];
-            proizvod.picture_link = pj.picture_link[i];
-            proizvod.description = pj.descriptions[i];
-            proizvod.category = pj.categories[i];
-            proizvod.date_added = pj.dates[i];
-            proizvod.save();
-
+            try {
+                proizvod.remoteId = pj.ids[i];
+                proizvod.name = pj.names[i];
+                proizvod.price = Double.valueOf(pj.pricess[i]);
+                proizvod.stock = pj.stock[i];
+                proizvod.picture_link = pj.picture_link[i];
+                proizvod.description = pj.descriptions[i];
+                proizvod.category = pj.categories[i];
+                proizvod.date_added = pj.dates[i];
+                proizvod.save();
+            }
+            catch (Exception e){
+                return null;
+            }
         }
         return null;
     }
