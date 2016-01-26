@@ -1,4 +1,4 @@
-package hr.foi.air.webshopapp.dbmodule;
+package adapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;

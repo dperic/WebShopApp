@@ -22,12 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
 import hr.foi.air.webshopapp.R;
-import hr.foi.air.webshopapp.dbmodule.ParseJSON;
 import hr.foi.air.webshopapp.dbmodule.product;
 import hr.foi.air.webshopapp.fragmenti.FragmentDrawer;
 import hr.foi.air.webshopapp.fragmenti.FragmentKatalog;

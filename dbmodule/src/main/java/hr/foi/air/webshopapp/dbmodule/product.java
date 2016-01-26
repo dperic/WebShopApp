@@ -6,6 +6,9 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Delete;
 
+import adapter.ParseJSON;
+
+
 
 /**
  * Created by Hlevnjak on 10.11.2015..
@@ -30,6 +33,7 @@ public class product extends Model {
     @Column(name = "date_added")
     public String date_added;
 
+
     public product() {
         super();
     }
@@ -51,7 +55,14 @@ public class product extends Model {
         for (int i = 0; i < pj.ids.length;i++)
         {
             product proizvod = new product();
-            new Delete().from(product.class).where("remoteId = ?",pj.ids[i]).execute();
+
+            try {
+                new Delete().from(product.class).where("remoteId = ?", pj.ids[i]).execute();
+            }
+            catch (Exception e){
+                return null;
+            }
+
             proizvod.remoteId = pj.ids[i];
             proizvod.name = pj.names[i];
             proizvod.price = Double.valueOf(pj.pricess[i]);
@@ -61,6 +72,7 @@ public class product extends Model {
             proizvod.category = pj.categories[i];
             proizvod.date_added = pj.dates[i];
             proizvod.save();
+
         }
         return null;
     }
