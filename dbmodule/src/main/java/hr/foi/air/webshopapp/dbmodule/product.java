@@ -14,8 +14,8 @@ import adapter.ProductsParseJSON;
  * Created by Hlevnjak on 10.11.2015..
  */
 
-@Table(name = "product1")
-public class product1 extends Model {
+@Table(name = "product")
+public class product extends Model {
     @Column(name = "remoteId")
     public int remoteId;
     @Column(name = "name")
@@ -34,19 +34,19 @@ public class product1 extends Model {
     public String date_added;
 
 
-    public product1() {
+    public product() {
         super();
     }
 
 
-    public static product1 UpdateProducts(String json) {
+    public static product UpdateProducts(String json) {
         ProductsParseJSON pj = new ProductsParseJSON(json);
         pj.parseJSON();
         for (int i = 0; i < pj.ids.length;i++)
         {
-            product1 proizvod = new product1();
+            product proizvod = new product();
             try {
-                new Delete().from(product1.class).where("remoteId = ?", pj.ids[i]).execute();
+                new Delete().from(product.class).where("remoteId = ?", pj.ids[i]).execute();
             }
             catch (Exception e){
                 return null;

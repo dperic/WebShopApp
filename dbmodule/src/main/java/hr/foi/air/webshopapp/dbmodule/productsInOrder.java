@@ -11,8 +11,8 @@ import adapter.BasketParseJSON;
  * Created by zoky4 on 05-Nov-15.
  */
 
-@Table(name = "productsInOrder1")
-public class productsInOrder1 extends Model {
+@Table(name = "productsInOrder")
+public class productsInOrder extends Model {
     @Column(name = "Order_id")
     public int order_id;
     @Column(name = "Product_id")
@@ -22,17 +22,17 @@ public class productsInOrder1 extends Model {
     @Column(name = "RemoteId")
     public int remoteId;
 
-    public productsInOrder1(){super();}
+    public productsInOrder(){super();}
 
 
-    public static productsInOrder1 UpdateBasket (String json) {
+    public static productsInOrder UpdateBasket (String json) {
         BasketParseJSON pj = new BasketParseJSON(json);
         pj.parseJSON();
         for (int i = 0; i < pj.remoteIds.length;i++)
         {
-            productsInOrder1 kosarice = new productsInOrder1();
+            productsInOrder kosarice = new productsInOrder();
             try {
-                new Delete().from(productsInOrder1.class).where("remoteId = ?", pj.remoteIds[i]).execute();
+                new Delete().from(productsInOrder.class).where("remoteId = ?", pj.remoteIds[i]).execute();
             }
             catch (Exception e){
                 return null;

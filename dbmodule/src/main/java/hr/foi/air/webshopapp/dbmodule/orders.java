@@ -10,8 +10,8 @@ import adapter.OrdersParseJSON;
 /**
  * Created by zoky4 on 27-Jan-16.
  */
-@Table(name = "orders1")
-public class orders1 extends Model {
+@Table(name = "orders")
+public class orders extends Model {
     @Column(name = "remoteId")
     public int remoteId;
     @Column(name = "orderDate")
@@ -21,18 +21,18 @@ public class orders1 extends Model {
     @Column(name = "statusId")
     public int statusId;
 
-    public orders1(){super();}
+    public orders(){super();}
 
 
-    public static orders1 UpdateOrders (String json) {
+    public static orders UpdateOrders (String json) {
         OrdersParseJSON pj = new OrdersParseJSON(json);
         pj.parseJSON();
         for (int i = 0; i < pj.remIds.length;i++)
         {
-            orders1 narudzbe = new orders1();
+            orders narudzbe = new orders();
 
             try {
-                new Delete().from(orders1.class).where("remoteId = ?", pj.remIds[i]).execute();
+                new Delete().from(orders.class).where("remoteId = ?", pj.remIds[i]).execute();
             }
             catch (Exception e){
                 return null;

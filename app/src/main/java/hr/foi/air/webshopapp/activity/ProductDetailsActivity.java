@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.activeandroid.query.Select;
 import com.koushikdutta.ion.Ion;
 import hr.foi.air.webshopapp.R;
-import hr.foi.air.webshopapp.dbmodule.product1;
+import hr.foi.air.webshopapp.dbmodule.product;
 
 public class ProductDetailsActivity extends AppCompatActivity{
 
@@ -28,16 +28,16 @@ public class ProductDetailsActivity extends AppCompatActivity{
         txtDescription = (TextView) findViewById(R.id.txtDescription);
         imageView = (ImageView) findViewById(R.id.imageView);
 
-        product1 selectedProduct1;
-        selectedProduct1 = getSelected(remoteID);
+        product selectedProduct;
+        selectedProduct = getSelected(remoteID);
 
-        txtproductName.setText(selectedProduct1.name);
-        txtPrice.setText(selectedProduct1.price.toString());
-        txtDescription.setText(selectedProduct1.description);
-        String stock = "" + selectedProduct1.stock;
+        txtproductName.setText(selectedProduct.name);
+        txtPrice.setText(selectedProduct.price.toString());
+        txtDescription.setText(selectedProduct.description);
+        String stock = "" + selectedProduct.stock;
         txtStock.setText((stock));
 
-        String imageURL = selectedProduct1.picture_link;
+        String imageURL = selectedProduct.picture_link;
 
 
         Ion.with(imageView)
@@ -46,10 +46,10 @@ public class ProductDetailsActivity extends AppCompatActivity{
                 .load(imageURL);
     }
 
-    public static product1 getSelected(int remoteId) {
-        product1 selectedProduct1;
-        selectedProduct1 = new Select().from(product1.class).where("remoteId = ?", String.valueOf(remoteId)).executeSingle();
-        return selectedProduct1;
+    public static product getSelected(int remoteId) {
+        product selectedProduct;
+        selectedProduct = new Select().from(product.class).where("remoteId = ?", String.valueOf(remoteId)).executeSingle();
+        return selectedProduct;
     }
 
 }

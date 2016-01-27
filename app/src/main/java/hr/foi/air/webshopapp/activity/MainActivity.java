@@ -22,9 +22,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import hr.foi.air.webshopapp.R;
-import hr.foi.air.webshopapp.dbmodule.orders1;
-import hr.foi.air.webshopapp.dbmodule.product1;
-import hr.foi.air.webshopapp.dbmodule.productsInOrder1;
+import hr.foi.air.webshopapp.dbmodule.orders;
+import hr.foi.air.webshopapp.dbmodule.product;
+import hr.foi.air.webshopapp.dbmodule.productsInOrder;
 import hr.foi.air.webshopapp.fragmenti.FragmentDrawer;
 import hr.foi.air.webshopapp.fragmenti.FragmentKatalog;
 import hr.foi.air.webshopapp.fragmenti.FragmentKosarica;
@@ -149,8 +149,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                     @Override
                     public void onResponse(String response) {
 
-                        product1 product1 = new product1();
-                        product1.UpdateProducts(response);
+                        product product = new product();
+                        product.UpdateProducts(response);
 
                     }
                 },
@@ -172,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                     @Override
                     public void onResponse(String response) {
 
-                        orders1 order = new orders1();
+                        orders order = new orders();
                         order.UpdateOrders(response);
 
                     }
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                     @Override
                     public void onResponse(String response) {
 
-                        productsInOrder1 basket = new productsInOrder1();
+                        productsInOrder basket = new productsInOrder();
                         basket.UpdateBasket(response);
 
                     }
