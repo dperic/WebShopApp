@@ -1,10 +1,15 @@
 package hr.foi.air.webshopapp.dbmodule;
 
 
+import android.util.Log;
+
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Delete;
+import com.activeandroid.query.Select;
+
+import java.util.List;
 
 import adapter.ProductsParseJSON;
 
@@ -68,5 +73,76 @@ public class product extends Model {
             }
         }
         return null;
+    }
+
+    public static List<product> getAll() {
+        Log.d("Izvrsio", "izvrsio");
+        return new Select()
+                .from(product.class)
+                .execute();
+    }
+
+    public int getRemoteId() {
+        return remoteId;
+    }
+
+    public void setRemoteId(int remoteId) {
+        this.remoteId = remoteId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public String getPicture_link() {
+        return picture_link;
+    }
+
+    public void setPicture_link(String picture_link) {
+        this.picture_link = picture_link;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getDate_added() {
+        return date_added;
+    }
+
+    public void setDate_added(String date_added) {
+        this.date_added = date_added;
     }
 }

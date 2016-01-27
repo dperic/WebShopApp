@@ -6,35 +6,10 @@
     android:padding="6dip"
     tools:context=".fragmenti.FragmentMain">
 
-    <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:contentDescription=""
-        android:src="@mipmap/graficka_item"
-        android:id="@+id/main_list_item_image"/>
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="70dp"
-        android:orientation="vertical">
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/firstLine"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="STRIX-R9390X-DC3OC-8GD5-GAMING"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/secondLine"
-            android:layout_width="fill_parent"
-            android:layout_height="26dip"
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:text="Cijena: 4.008,02 kn"
-            android:textSize="12sp" />
-
-
-
-    </LinearLayout>
+    </ListView>
 </LinearLayout>
