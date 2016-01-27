@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity{
     SharedPreferences SessionManager;
     public static final String UserName = "userNameKey";
     public static final String dateTime = "dateTimeKey";
-
+    public static final String remoteId = "remoteId";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,10 +95,10 @@ public class LoginActivity extends AppCompatActivity{
                     @Override
                     public void onResponse(String response) {
                         if(response.trim().equals("success")){
-
                             SharedPreferences.Editor editorSession = SessionManager.edit();
                             editorSession.putString(UserName, username);
                             editorSession.putLong(dateTime, timeDate);
+                            editorSession.putString(remoteId, "");
                             editorSession.apply();
                             Toast.makeText(LoginActivity.this, "Session details are saved on "+ currDate, Toast.LENGTH_LONG).show();
                             openProfile();

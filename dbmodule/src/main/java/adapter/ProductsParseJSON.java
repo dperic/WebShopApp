@@ -7,7 +7,7 @@ import org.json.JSONObject;
 /**
  * Created by zoky4 on 21-Jan-16.
  */
-public class ParseJSON {
+public class ProductsParseJSON {
     public static String[] ids;
     public static String[] names;
     public static String[] pricess;
@@ -33,12 +33,12 @@ public class ParseJSON {
 
     private String json;
 
-    public ParseJSON(String json){
+    public ProductsParseJSON(String json){
         this.json = json;
     }
 
     public void parseJSON(){
-        JSONObject jsonObject=null;
+        JSONObject jsonObject;
         try {
             jsonObject = new JSONObject(json);
             products = jsonObject.getJSONArray(JSON_ARRAY);

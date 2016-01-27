@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-
 import com.activeandroid.ActiveAndroid;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,7 +22,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import hr.foi.air.webshopapp.R;
-import hr.foi.air.webshopapp.dbmodule.product;
+import hr.foi.air.webshopapp.dbmodule.orders1;
+import hr.foi.air.webshopapp.dbmodule.product1;
+import hr.foi.air.webshopapp.dbmodule.productsInOrder1;
 import hr.foi.air.webshopapp.fragmenti.FragmentDrawer;
 import hr.foi.air.webshopapp.fragmenti.FragmentKatalog;
 import hr.foi.air.webshopapp.fragmenti.FragmentKosarica;
@@ -35,9 +36,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
-    public static final String JSON_URL = "http://webshopappfoi.esy.es/volleyGetProducts.php";
-    SharedPreferences productsLocal;
-    public static final String Products = "productsKey";
 
 
     @Override
@@ -56,7 +54,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         drawerFragment.setDrawerListener(this);
         displayView(0);
 
-        sendSyncRequest();
+        sendSyncRequestProducts();
+        sendSyncRequestOrders();
+        sendSyncRequestBasket();
+
     }
 
     @Override
@@ -137,15 +138,19 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     }
 
-    private void sendSyncRequest(){
+    public static final String JSON_URL_get_products = "http://webshopappfoi.esy.es/volleyGetProducts.php";
+    public static final String JSON_URL_get_orders = "http://webshopappfoi.esy.es/volleyGetOrders.php";
+    public static final String JSON_URL_get_basket = "http://webshopappfoi.esy.es/volleyGetBasket.php";
 
-        StringRequest stringRequest = new StringRequest(JSON_URL,
+    public void sendSyncRequestProducts(){
+
+        StringRequest stringRequestProducts = new StringRequest(JSON_URL_get_products,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
-                        product product = new product();
-                        product.UpdateProducts(response);
+                        product1 product1 = new product1();
+                        product1.UpdateProducts(response);
 
                     }
                 },
@@ -157,6 +162,53 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 });
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        requestQueue.add(stringRequestProducts);
     }
+
+    public void sendSyncRequestOrders(){
+
+        StringRequest stringRequestOrders = new StringRequest(JSON_URL_get_orders,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        orders1 order = new orders1();
+                        order.UpdateOrders(response);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequestOrders);
+    }
+
+    public void sendSyncRequestBasket(){
+
+        StringRequest stringRequestBasket = new StringRequest(JSON_URL_get_basket,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        productsInOrder1 basket = new productsInOrder1();
+                        basket.UpdateBasket(response);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequestBasket);
+    }
+
 }

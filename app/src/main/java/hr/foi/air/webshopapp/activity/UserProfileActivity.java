@@ -42,7 +42,9 @@ public class UserProfileActivity extends AppCompatActivity{
     public static final String KEY_NAME= "name";
     public static final String KEY_SURNAME= "surname";
     public static final String KEY_ADDRESS= "address";
+    public static final String KEY_ID= "id";
     public static final String JSON_ARRAY = "result";
+
 
     private EditText edtUsername;
     private EditText edtEmail;
@@ -51,6 +53,7 @@ public class UserProfileActivity extends AppCompatActivity{
     private EditText edtSurname;
     private EditText edtAddress;
 
+
     private ProgressDialog loading;
 
     private TextView txtLogin;
@@ -58,6 +61,7 @@ public class UserProfileActivity extends AppCompatActivity{
     private Button btnLogout;
     private Button btnSave;
     SharedPreferences LoggedInUser;
+    public static final String remoteId = "remoteId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +140,12 @@ public class UserProfileActivity extends AppCompatActivity{
             edtAddress.setText(userData.getString(KEY_ADDRESS).toString(), TextView.BufferType.EDITABLE);
             edtName.setText(userData.getString(KEY_NAME).toString(), TextView.BufferType.EDITABLE);
             edtSurname.setText(userData.getString(KEY_SURNAME).toString(), TextView.BufferType.EDITABLE);
+
+            LoggedInUser = getSharedPreferences("SessionManager", MODE_PRIVATE);
+            SharedPreferences.Editor editor = LoggedInUser.edit();
+            editor.putString(remoteId, (userData.getString(KEY_ID).toString()));
+            editor.apply();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
