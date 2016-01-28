@@ -18,7 +18,7 @@ import hr.foi.air.webshopapp.R;
 import hr.foi.air.webshopapp.activity.MainActivity;
 import hr.foi.air.webshopapp.activity.ProductDetailsActivity;
 import hr.foi.air.webshopapp.adapter.ListAdapter;
-import hr.foi.air.webshopapp.dbmodule.product;
+import hr.foi.air.webshopapp.dbmodule.dbTables.product;
 
 
 public class FragmentMain extends Fragment {
@@ -38,8 +38,8 @@ public class FragmentMain extends Fragment {
         ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.app_name));
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         product product = new product();
-        List<hr.foi.air.webshopapp.dbmodule.product> productList = product.getAll();
-        for (hr.foi.air.webshopapp.dbmodule.product p : productList){
+        List<hr.foi.air.webshopapp.dbmodule.dbTables.product> productList = product.getAll();
+        for (hr.foi.air.webshopapp.dbmodule.dbTables.product p : productList){
             Log.d("Ovo je name", p.getName());
         }
         listView = (ListView) rootView.findViewById(R.id.list);

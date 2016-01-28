@@ -1,4 +1,4 @@
-package hr.foi.air.webshopapp.dbmodule;
+package hr.foi.air.webshopapp.dbmodule.dbTables;
 
 
 import android.util.Log;
@@ -11,7 +11,7 @@ import com.activeandroid.query.Select;
 
 import java.util.List;
 
-import adapter.ProductsParseJSON;
+import hr.foi.air.webshopapp.dbmodule.adapter.ProductsParseJSON;
 
 
 

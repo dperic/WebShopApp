@@ -22,9 +22,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import hr.foi.air.webshopapp.R;
-import hr.foi.air.webshopapp.dbmodule.orders;
-import hr.foi.air.webshopapp.dbmodule.product;
-import hr.foi.air.webshopapp.dbmodule.productsInOrder;
+import hr.foi.air.webshopapp.dbmodule.dbTables.orders;
+import hr.foi.air.webshopapp.dbmodule.dbTables.product;
+import hr.foi.air.webshopapp.dbmodule.dbTables.productsInOrder;
 import hr.foi.air.webshopapp.fragmenti.FragmentDrawer;
 import hr.foi.air.webshopapp.fragmenti.FragmentKatalog;
 import hr.foi.air.webshopapp.fragmenti.FragmentKosarica;
@@ -156,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
     public void sendSyncRequestOrders(){
-
         StringRequest stringRequestOrders = new StringRequest(JSON_URL_get_orders,
                 new Response.Listener<String>() {
                     @Override

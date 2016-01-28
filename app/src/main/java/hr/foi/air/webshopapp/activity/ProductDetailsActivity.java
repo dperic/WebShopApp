@@ -1,24 +1,47 @@
 package hr.foi.air.webshopapp.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.activeandroid.query.Select;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.koushikdutta.ion.Ion;
+
 import hr.foi.air.webshopapp.R;
-import hr.foi.air.webshopapp.dbmodule.product;
+import hr.foi.air.webshopapp.dbmodule.dbOperations.AddProduct;
+import hr.foi.air.webshopapp.dbmodule.dbOperations.CreateOrder;
+import hr.foi.air.webshopapp.dbmodule.dbTables.orders;
+import hr.foi.air.webshopapp.dbmodule.dbTables.product;
+import hr.foi.air.webshopapp.dbmodule.dbTables.productsInOrder;
 
 public class ProductDetailsActivity extends AppCompatActivity{
+    public static final String JSON_URL_get_orders = "http://webshopappfoi.esy.es/volleyGetOrders.php";
+    public static final String JSON_URL_get_basket = "http://webshopappfoi.esy.es/volleyGetBasket.php";
 
     private Toolbar mToolbar;
     public TextView txtproductName;
     public TextView txtPrice;
     public TextView txtStock;
     public TextView txtDescription;
+    public EditText edtQuantity;
     ImageView imageView;
+    Button btnAddProduct;
+    int remoteID = 4;
+
+    SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +59,14 @@ public class ProductDetailsActivity extends AppCompatActivity{
         txtStock = (TextView) findViewById(R.id.txtStock);
         txtDescription = (TextView) findViewById(R.id.txtDescription);
         imageView = (ImageView) findViewById(R.id.imageView);
+        btnAddProduct = (Button) findViewById(R.id.btnOrder);
+        edtQuantity = (EditText) findViewById(R.id.editText);
 
         Intent intent = getIntent();
         product selectedProduct = getSelected(Integer.parseInt(intent.getStringExtra("remoteId")));
+
+        sharedPrefs = getSharedPreferences("SessionManager", MODE_PRIVATE);
+
 
         txtproductName.setText(selectedProduct.name);
         txtPrice.setText(selectedProduct.price.toString());
@@ -53,6 +81,34 @@ public class ProductDetailsActivity extends AppCompatActivity{
                 .placeholder(R.drawable.login_icon)
                 .error(R.drawable.search_icon)
                 .load(imageURL);
+
+        btnAddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendSyncRequestOrders();
+                CreateOrder create = new CreateOrder();
+                AddProduct addProduct = new AddProduct();
+
+                int userId = Integer.valueOf(sharedPrefs.getString("remoteId", ""));
+                int quantity = Integer.valueOf(edtQuantity.getText().toString());
+
+
+
+                RequestQueue requestQueue = Volley.newRequestQueue(ProductDetailsActivity.this);
+                create.CreateNewOrder(userId, requestQueue);
+
+                int orderId = GetOrderId();
+
+                if (quantity>selectedProduct.stock || quantity<=0){
+                    Toast.makeText(ProductDetailsActivity.this, "Not enough products in stock! Enter different quantity", Toast.LENGTH_LONG);
+                }
+                else {
+                    addProduct.AddNewProduct(quantity, remoteID, orderId, requestQueue);
+                }
+                sendSyncRequestOrders();
+                sendSyncRequestBasket();
+            }
+        });
     }
 
     public static product getSelected(int remoteId) {
@@ -61,4 +117,55 @@ public class ProductDetailsActivity extends AppCompatActivity{
         return selectedProduct;
     }
 
+    public int GetOrderId(){
+        orders currentOrder;
+        currentOrder = new Select().from(orders.class).where("userId = ? AND statusId = ?", sharedPrefs.getString("remoteId", ""), "1").executeSingle();
+        return currentOrder.remoteId;
+    }
+
+
+    public void sendSyncRequestOrders(){
+        StringRequest stringRequestOrders = new StringRequest(JSON_URL_get_orders,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        orders order = new orders();
+                        order.UpdateOrders(response);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ProductDetailsActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequestOrders);
+    }
+
+    public void sendSyncRequestBasket(){
+
+        StringRequest stringRequestBasket = new StringRequest(JSON_URL_get_basket,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        productsInOrder basket = new productsInOrder();
+                        basket.UpdateBasket(response);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(ProductDetailsActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequestBasket);
+    }
 }

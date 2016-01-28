@@ -1,11 +1,11 @@
-package hr.foi.air.webshopapp.dbmodule;
+package hr.foi.air.webshopapp.dbmodule.dbTables;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Delete;
 
-import adapter.OrdersParseJSON;
+import hr.foi.air.webshopapp.dbmodule.adapter.OrdersParseJSON;
 
 /**
  * Created by zoky4 on 27-Jan-16.
