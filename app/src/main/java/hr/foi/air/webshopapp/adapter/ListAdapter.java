@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hr.foi.air.webshopapp.R;
-import hr.foi.air.webshopapp.dbmodule.product;
+import hr.foi.air.webshopapp.dbmodule.dbTables.product;
 
 /**
  * Created by Dario on 27.1.2016..
