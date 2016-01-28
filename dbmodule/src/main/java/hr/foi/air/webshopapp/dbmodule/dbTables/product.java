@@ -95,7 +95,7 @@ public class product extends Model {
         Log.d("Izvrsio", "izvrsio");
         return new Select()
                 .from(product.class)
-                .where("name = ?", rezultat)
+                .where("name LIKE ?", new String[]{'%' + rezultat + '%'})
                 .execute();
     }
 
