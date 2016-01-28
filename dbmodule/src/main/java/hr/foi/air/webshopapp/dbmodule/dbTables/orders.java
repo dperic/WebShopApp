@@ -59,6 +59,7 @@ public class orders extends Model {
         Log.d("Izvrsio", "izvrsio");
         return new Select()
                 .from(orders.class)
+                .where("")
                 .execute();
     }
 

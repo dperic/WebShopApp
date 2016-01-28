@@ -34,7 +34,7 @@ public class FragmentKatalog extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.app_name));
+        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.title_katalog));
         View rootView = inflater.inflate(R.layout.fragment_katalog, container, false);
         product product = new product();
         List<hr.foi.air.webshopapp.dbmodule.dbTables.product> vrijednostiLista = product.getAll();

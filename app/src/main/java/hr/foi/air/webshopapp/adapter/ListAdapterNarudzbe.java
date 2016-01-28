@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.activeandroid.query.Select;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class ListAdapterNarudzbe extends ArrayAdapter<orders> {
 
         if (convertView == null){
             LayoutInflater vi = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = vi.inflate(R.layout.list_row, null);
+            convertView = vi.inflate(R.layout.list_row_narudzbe, null);
 
             holder = new ViewHolder();
             holder.id=(TextView) convertView.findViewById(R.id.nevidljivIDnarudzbe);
@@ -49,8 +51,7 @@ public class ListAdapterNarudzbe extends ArrayAdapter<orders> {
         }
         orders orders = mList.get(position);
         holder.id.setText(String.valueOf(orders.getRemoteId()));
-        Log.d("kurt", String.valueOf(orders.getRemoteId()));
-        holder.title.setText(orders.getRemoteId());
+        holder.title.setText(String.valueOf(orders.getRemoteId()));
 
 
         return convertView;
@@ -60,4 +61,5 @@ public class ListAdapterNarudzbe extends ArrayAdapter<orders> {
         TextView title,id;
 
     }
+
 }

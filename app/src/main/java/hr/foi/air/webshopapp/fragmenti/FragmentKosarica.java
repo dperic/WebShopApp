@@ -24,14 +24,17 @@ import hr.foi.air.webshopapp.R;
 import hr.foi.air.webshopapp.activity.MainActivity;
 import hr.foi.air.webshopapp.activity.ProductDetailsActivity;
 import hr.foi.air.webshopapp.adapter.ListAdapter;
-import hr.foi.air.webshopapp.dbmodule.dbTables.product;
+
+import hr.foi.air.webshopapp.adapter.ListAdapterKosarica;
 import hr.foi.air.webshopapp.dbmodule.dbOperations.OrderProducts;
+import hr.foi.air.webshopapp.dbmodule.dbTables.productsInOrder;
 
 
 public class FragmentKosarica extends Fragment implements View.OnClickListener{
     private Button btnOrder;
     SharedPreferences sharedPreferences;
-
+    private ListView listView;
+    private ListAdapterKosarica adapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +46,29 @@ public class FragmentKosarica extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.title_kosarica));
+
         View rootView = inflater.inflate(R.layout.fragment_kosarica, container, false);
+        productsInOrder productsInOrder = new productsInOrder();
+        List<productsInOrder> productsInOrderList = productsInOrder.getAllproductsInOrder();
 
-
+        listView = (ListView) rootView.findViewById(R.id.listKosarica);
+        adapter = new ListAdapterKosarica(getActivity(), R.layout.list_row_kosarica, productsInOrderList);
+        listView.setAdapter(adapter);
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView idd = (TextView) view.findViewById(R.id.nevidljivID);
+                Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
+                intent.putExtra("remoteId", idd.getText().toString());
+                Log.d("peric", idd.getText().toString());
+                startActivity(intent);
+            }
+        });*/
+/*
         btnOrder = (Button) rootView.findViewById(R.id.btnOrder);
 
         btnOrder.setOnClickListener(this);
-
+*/
         return rootView;
     }
 

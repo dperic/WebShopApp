@@ -1,9 +1,14 @@
 package hr.foi.air.webshopapp.dbmodule.dbTables;
 
+import android.util.Log;
+
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Delete;
+import com.activeandroid.query.Select;
+
+import java.util.List;
 
 import hr.foi.air.webshopapp.dbmodule.adapter.BasketParseJSON;
 
@@ -49,5 +54,44 @@ public class productsInOrder extends Model {
             }
         }
         return null;
+    }
+
+    public static List<productsInOrder> getAllproductsInOrder() {
+        Log.d("Izvrsio", "izvrsio");
+        return new Select()
+                .from(productsInOrder.class)
+                .execute();
+    }
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
+    }
+
+    public int getRemoteId() {
+        return remoteId;
+    }
+
+    public void setRemoteId(int remoteId) {
+        this.remoteId = remoteId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 }
