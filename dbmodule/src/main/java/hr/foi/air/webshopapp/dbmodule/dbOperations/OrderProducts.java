@@ -16,7 +16,7 @@ public class OrderProducts {
     public static final String SAVE_URL = "http://webshopappfoi.esy.es/volleyOrderProductsFromBasket.php";
     public static final String KEY_USERNAME = "username";
 
-    public void saveUser(final String username, RequestQueue requestQueue) {
+    public void saveOrder(final String username, RequestQueue requestQueue) {
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, SAVE_URL,

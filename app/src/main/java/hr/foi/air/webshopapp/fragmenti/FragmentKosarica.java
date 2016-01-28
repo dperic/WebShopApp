@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -56,8 +57,13 @@ public class FragmentKosarica extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         sharedPreferences = getActivity().getSharedPreferences("SessionManager", 0);
         final String userName = sharedPreferences.getString("userNameKey", "").toString().trim();
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-        OrderProducts orderProducts = new OrderProducts();
-        orderProducts.saveUser(userName, requestQueue);
+        if (userName != null) {
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            OrderProducts orderProducts = new OrderProducts();
+            orderProducts.saveOrder(userName, requestQueue);
+        }
+        else {
+            Toast.makeText(getActivity(), "Please login first!", Toast.LENGTH_LONG).show();
+        }
     }
 }
