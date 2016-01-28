@@ -6,7 +6,7 @@
     android:orientation="horizontal"
     android:padding="5dip" >
 
-    <!--  ListRow Left sied Thumbnail image -->
+
     <LinearLayout android:id="@+id/thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
 
     </LinearLayout>
 
-    <!-- Title Of Song-->
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
         android:textSize="15dip"
         android:textStyle="bold"/>
 
-    <!-- Artist Name -->
+
     <TextView
         android:id="@+id/cijena"
         android:layout_width="fill_parent"

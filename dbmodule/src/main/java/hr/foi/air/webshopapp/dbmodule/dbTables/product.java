@@ -100,6 +100,8 @@ public class product extends Model {
     }
 
 
+
+
     public int getRemoteId() {
         return remoteId;
     }
