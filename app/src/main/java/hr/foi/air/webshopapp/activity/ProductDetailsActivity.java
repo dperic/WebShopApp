@@ -39,7 +39,6 @@ public class ProductDetailsActivity extends AppCompatActivity{
     public EditText edtQuantity;
     ImageView imageView;
     Button btnAddProduct;
-    int remoteID = 4;
 
     SharedPreferences sharedPrefs;
 
@@ -89,21 +88,26 @@ public class ProductDetailsActivity extends AppCompatActivity{
                 CreateOrder create = new CreateOrder();
                 AddProduct addProduct = new AddProduct();
 
-                int userId = Integer.valueOf(sharedPrefs.getString("remoteId", ""));
-                int quantity = Integer.valueOf(edtQuantity.getText().toString());
+                String id = sharedPrefs.getString("remoteId", "");
 
-
+                String kolicina = edtQuantity.getText().toString();
 
                 RequestQueue requestQueue = Volley.newRequestQueue(ProductDetailsActivity.this);
-                create.CreateNewOrder(userId, requestQueue);
 
-                int orderId = GetOrderId();
 
-                if (quantity>selectedProduct.stock || quantity<=0){
-                    Toast.makeText(ProductDetailsActivity.this, "Not enough products in stock! Enter different quantity", Toast.LENGTH_LONG);
+                if (id != "" && kolicina!=null) {
+                    int userId = Integer.valueOf(id);
+                    int quantity = Integer.valueOf(kolicina);
+                    int orderId = GetOrderId();
+                    create.CreateNewOrder(userId, requestQueue);
+                    if (quantity > selectedProduct.stock || quantity <= 0) {
+                        Toast.makeText(ProductDetailsActivity.this, "Not enough products in stock! Enter different quantity", Toast.LENGTH_LONG);
+                    } else {
+                        addProduct.AddNewProduct(quantity, selectedProduct.remoteId, orderId, requestQueue);
+                    }
                 }
                 else {
-                    addProduct.AddNewProduct(quantity, remoteID, orderId, requestQueue);
+                    Toast.makeText(ProductDetailsActivity.this, "Please login first or enter valid quantity", Toast.LENGTH_LONG);
                 }
                 sendSyncRequestOrders();
                 sendSyncRequestBasket();
