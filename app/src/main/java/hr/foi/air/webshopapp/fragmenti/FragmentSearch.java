@@ -82,10 +82,9 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
         } else {
             productList.clear();
             productList = product.searchrezultat(inputText.getText().toString());
-
-            adapter.notifyDataSetChanged();
             adapter = new ListAdapter(getActivity(), R.layout.list_row, productList);
             listView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         }
     }
 }
