@@ -15,8 +15,6 @@ import java.util.Map;
 public class CreateOrder {
     public static final String URL = "http://webshopappfoi.esy.es/volleyNewOrder.php";
 
-//    public static final String KEY_ID = "id";
-    public static final String KEY_ORDERDATE = "orderDate";
     public static final String KEY_USERID = "userId";
     public static final String KEY_STATUSID = "statusId";
 
