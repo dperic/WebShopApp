@@ -38,9 +38,6 @@ public class FragmentKatalog extends Fragment  {
         View rootView = inflater.inflate(R.layout.fragment_katalog, container, false);
         product product = new product();
         List<hr.foi.air.webshopapp.dbmodule.dbTables.product> vrijednostiLista = product.getAll();
-        for (hr.foi.air.webshopapp.dbmodule.dbTables.product p : vrijednostiLista){
-            Log.d("Ovo je name", p.getName());
-        }
         listView = (ListView) rootView.findViewById(R.id.list2);
         adapter = new ProductAdapter(getActivity(), R.layout.list_row, vrijednostiLista);
         listView.setAdapter(adapter);
@@ -50,7 +47,6 @@ public class FragmentKatalog extends Fragment  {
                 TextView idd = (TextView) view.findViewById(R.id.nevidljivID);
                 Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
                 intent.putExtra("remoteId", idd.getText().toString());
-                Log.d("robi", idd.getText().toString());
                 startActivity(intent);
             }
         });

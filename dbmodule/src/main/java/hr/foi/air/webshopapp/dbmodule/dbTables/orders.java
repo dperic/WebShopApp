@@ -56,7 +56,7 @@ public class orders extends Model {
         return null;
     }
     public static List<orders> getAllOrders() {
-        Log.d("Izvrsio", "izvrsio");
+
         return new Select()
                 .from(orders.class)
                 .where("")

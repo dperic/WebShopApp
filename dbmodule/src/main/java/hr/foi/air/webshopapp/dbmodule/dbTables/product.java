@@ -76,7 +76,7 @@ public class product extends Model {
     }
 
     public static List<product> getAll() {
-        Log.d("Izvrsio", "izvrsio");
+
         return new Select()
                 .from(product.class)
                 .orderBy("date_added ASC")
@@ -84,7 +84,7 @@ public class product extends Model {
     }
 
     public static List<product> getAllsearch() {
-        Log.d("Izvrsio", "izvrsio");
+
         return new Select()
                 .from(product.class)
                 .orderBy("name ASC")
@@ -92,7 +92,7 @@ public class product extends Model {
     }
 
     public static List<product> searchrezultat(String rezultat) {
-        Log.d("Izvrsio", "izvrsio");
+
         return new Select()
                 .from(product.class)
                 .where("name LIKE ?", new String[]{'%' + rezultat + '%'})

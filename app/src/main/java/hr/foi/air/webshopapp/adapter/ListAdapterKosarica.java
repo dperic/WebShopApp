@@ -54,7 +54,6 @@ public class ListAdapterKosarica extends ArrayAdapter<productsInOrder> {
         }
         productsInOrder productsInOrder = mList.get(position);
         holder.nevidljivID.setText(String.valueOf(productsInOrder.getOrder_id()));
-        Log.d("kurt", String.valueOf(productsInOrder.getRemoteId()));
         holder.orderID.setText(String.valueOf(productsInOrder.getOrder_id()));
         holder.productID.setText(String.valueOf(productsInOrder.getProduct_id()));
         holder.kolicinaKosarica.setText(String.valueOf(productsInOrder.getQuantity()));

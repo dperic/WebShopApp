@@ -57,7 +57,7 @@ public class productsInOrder extends Model {
     }
 
     public static List<productsInOrder> getAllproductsInOrder() {
-        Log.d("Izvrsio", "izvrsio");
+
         return new Select()
                 .from(productsInOrder.class)
                 .execute();

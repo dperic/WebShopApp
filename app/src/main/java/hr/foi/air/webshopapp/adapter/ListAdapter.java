@@ -55,7 +55,6 @@ public class ListAdapter extends ArrayAdapter<product>{
         }
         product product = mList.get(position);
         holder.id.setText(String.valueOf(product.getRemoteId()));
-        Log.d("kurt", String.valueOf(product.getRemoteId()));
         holder.title.setText(product.getName());
         holder.cijena.setText(String.valueOf(product.getPrice()));
         Picasso.with(mContext).load(product.getPicture_link()).into(holder.imageView);

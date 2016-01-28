@@ -60,7 +60,6 @@ public class FragmentKosarica extends Fragment implements View.OnClickListener{
                 TextView idd = (TextView) view.findViewById(R.id.nevidljivID);
                 Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
                 intent.putExtra("remoteId", idd.getText().toString());
-                Log.d("peric", idd.getText().toString());
                 startActivity(intent);
             }
         });*/
