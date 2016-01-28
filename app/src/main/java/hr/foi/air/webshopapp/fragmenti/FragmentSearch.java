@@ -15,13 +15,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import java.util.List;
 
 import hr.foi.air.webshopapp.R;
 import hr.foi.air.webshopapp.activity.MainActivity;
 import hr.foi.air.webshopapp.activity.ProductDetailsActivity;
 import hr.foi.air.webshopapp.adapter.ListAdapter;
-import hr.foi.air.webshopapp.dbmodule.product;
+import hr.foi.air.webshopapp.dbmodule.dbTables.product;
 
 public class FragmentSearch extends Fragment implements View.OnClickListener{
     private ListView listView;

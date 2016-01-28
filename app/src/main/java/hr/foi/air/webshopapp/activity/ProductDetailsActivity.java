@@ -63,7 +63,7 @@ public class ProductDetailsActivity extends AppCompatActivity{
         edtQuantity = (EditText) findViewById(R.id.editText);
 
         Intent intent = getIntent();
-        product selectedProduct = getSelected(Integer.parseInt(intent.getStringExtra("remoteId")));
+        final product selectedProduct = getSelected(Integer.parseInt(intent.getStringExtra("remoteId")));
 
         sharedPrefs = getSharedPreferences("SessionManager", MODE_PRIVATE);
 
