@@ -95,19 +95,21 @@ public class ProductDetailsActivity extends AppCompatActivity{
                 RequestQueue requestQueue = Volley.newRequestQueue(ProductDetailsActivity.this);
 
 
-                if (id != "" && kolicina!=null) {
+                if (id != "") {
                     int userId = Integer.valueOf(id);
                     int quantity = Integer.valueOf(kolicina);
                     int orderId = GetOrderId();
+
                     create.CreateNewOrder(userId, requestQueue);
+
                     if (quantity > selectedProduct.stock || quantity <= 0) {
-                        Toast.makeText(ProductDetailsActivity.this, "Not enough products in stock! Enter different quantity", Toast.LENGTH_LONG);
+                        Toast.makeText(ProductDetailsActivity.this, "Not enough products in stock! Enter different quantity", Toast.LENGTH_LONG).show();
                     } else {
                         addProduct.AddNewProduct(quantity, selectedProduct.remoteId, orderId, requestQueue);
                     }
                 }
                 else {
-                    Toast.makeText(ProductDetailsActivity.this, "Please login first or enter valid quantity", Toast.LENGTH_LONG);
+                    Toast.makeText(ProductDetailsActivity.this, "Please login first!", Toast.LENGTH_LONG).show();
                 }
                 sendSyncRequestOrders();
                 sendSyncRequestBasket();
