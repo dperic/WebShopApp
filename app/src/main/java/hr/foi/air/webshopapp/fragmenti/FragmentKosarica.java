@@ -8,12 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import hr.foi.air.webshopapp.R;
+import hr.foi.air.webshopapp.activity.MainActivity;
 
 
 public class FragmentKosarica extends Fragment {
-    public FragmentKosarica() {
-
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +22,7 @@ public class FragmentKosarica extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.title_kosarica));
         View rootView = inflater.inflate(R.layout.fragment_kosarica, container, false);
         return rootView;
     }

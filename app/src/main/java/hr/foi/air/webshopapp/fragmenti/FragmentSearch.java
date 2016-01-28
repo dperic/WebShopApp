@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -20,11 +23,13 @@ import hr.foi.air.webshopapp.activity.ProductDetailsActivity;
 import hr.foi.air.webshopapp.adapter.ListAdapter;
 import hr.foi.air.webshopapp.dbmodule.product;
 
-
-public class FragmentMain extends Fragment {
-
+public class FragmentSearch extends Fragment implements View.OnClickListener{
     private ListView listView;
     private ListAdapter adapter;
+    private Button searchButton;
+    private EditText inputText;
+    private product product;
+    private List<product> productList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,13 +40,15 @@ public class FragmentMain extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.app_name));
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        product product = new product();
-        List<hr.foi.air.webshopapp.dbmodule.product> productList = product.getAll();
-        for (hr.foi.air.webshopapp.dbmodule.product p : productList){
-            Log.d("Ovo je name", p.getName());
-        }
+        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.title_search));
+        View rootView = inflater.inflate(R.layout.fragment_search, container, false);
+
+        product = new product();
+        productList = product.getAllsearch();
+
+        searchButton = (Button) rootView.findViewById(R.id.btnSearch);
+        searchButton.setOnClickListener(this);
+        inputText = (EditText) rootView.findViewById(R.id.input_search);
         listView = (ListView) rootView.findViewById(R.id.list);
         adapter = new ListAdapter(getActivity(), R.layout.list_row, productList);
         listView.setAdapter(adapter);
@@ -51,7 +58,6 @@ public class FragmentMain extends Fragment {
                 TextView idd = (TextView) view.findViewById(R.id.nevidljivID);
                 Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
                 intent.putExtra("remoteId", idd.getText().toString());
-                Log.d("peric", idd.getText().toString());
                 startActivity(intent);
             }
         });
@@ -63,11 +69,22 @@ public class FragmentMain extends Fragment {
         super.onAttach(activity);
     }
 
-
     @Override
     public void onDetach() {
         super.onDetach();
     }
+
+    @Override
+    public void onClick(View v) {
+        if (inputText.getText().toString().equals("")){
+            Toast.makeText(getActivity(), "Niste unijeli pojam", Toast.LENGTH_SHORT).show();
+        } else {
+            productList.clear();
+            productList = product.searchrezultat(inputText.getText().toString());
+
+            adapter.notifyDataSetChanged();
+            adapter = new ListAdapter(getActivity(), R.layout.list_row, productList);
+            listView.setAdapter(adapter);
+        }
+    }
 }
-
-

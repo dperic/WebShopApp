@@ -47,6 +47,11 @@
         android:layout_marginTop="1dip"
         android:layout_toRightOf="@+id/thumbnail"
         android:text="Cijena" />
+    <TextView
+        android:id="@+id/nevidljivID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 
 
 </RelativeLayout>

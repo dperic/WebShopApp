@@ -79,8 +79,26 @@ public class product extends Model {
         Log.d("Izvrsio", "izvrsio");
         return new Select()
                 .from(product.class)
+                .orderBy("date_added ASC")
                 .execute();
     }
+
+    public static List<product> getAllsearch() {
+        Log.d("Izvrsio", "izvrsio");
+        return new Select()
+                .from(product.class)
+                .orderBy("name ASC")
+                .execute();
+    }
+
+    public static List<product> searchrezultat(String rezultat) {
+        Log.d("Izvrsio", "izvrsio");
+        return new Select()
+                .from(product.class)
+                .where("name like % + ? + %", rezultat)
+                .execute();
+    }
+
 
     public int getRemoteId() {
         return remoteId;

@@ -1,7 +1,6 @@
 package hr.foi.air.webshopapp.fragmenti;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,32 +8,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import hr.foi.air.webshopapp.R;
-import hr.foi.air.webshopapp.activity.LoadImageActivity;
+import hr.foi.air.webshopapp.activity.MainActivity;
 
 public class FragmentKatalog extends Fragment  {
 
 
-
-    public FragmentKatalog() {
-
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(getActivity(), LoadImageActivity.class);
-        startActivity(intent);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).setActionBarTitle(getString(R.string.title_katalog));
         View rootView = inflater.inflate(R.layout.fragment_katalog, container, false);
         return rootView;
 
-
     }
-
 
     @Override
     public void onAttach(Activity activity) {

@@ -45,17 +45,15 @@
                 android:value=".activity.LoginActivity" />
         </activity>
         <activity
-            android:name=".activity.LoadImageActivity"
-            android:parentActivityName=".activity.MainActivity"
+            android:name=".activity.ProductDetailsActivity"
+            android:label="@string/title_activity_product_details"
             android:theme="@style/MyMaterialTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.MainActivity" />
+
+
         </activity>
-        <activity
-            android:name=".activity.ProductDetailsActivity"
-            android:label="@string/title_activity_product_details"
-            android:theme="@style/MyMaterialTheme"></activity>
     </application>
 
 </manifest>

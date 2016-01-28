@@ -78,10 +78,7 @@ public class LoginActivity extends AppCompatActivity{
                 finish();
             }
         });
-
-
     }
-
 
     private void userLogin() {
         username = editTextUsername.getText().toString().trim();
@@ -116,15 +113,12 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
 
-
-
                 Map<String,String> map = new HashMap();
                 map.put(KEY_USERNAME,username);
                 map.put(KEY_PASSWORD,password);
                 return map;
             }
         };
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }

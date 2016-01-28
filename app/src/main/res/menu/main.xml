@@ -4,35 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
-
-    <item
-        android:id="@+id/action_racunala"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/action_racunala"/>
-    <item
-        android:id="@+id/action_komponente"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/action_komponente"/>
-    <item
-        android:id="@+id/action_oprema"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/action_oprema"/>
-    <item
-        android:id="@+id/search_icon"
-        android:title="@string/search_icon"
-        android:orderInCategory="100"
-        android:icon="@drawable/search_icon"
-        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/login_icon"
         android:title="@string/login_icon"
         android:orderInCategory="100"
         android:icon="@drawable/login_icon"
         app:showAsAction="ifRoom"/>
-
-
 
 </menu>

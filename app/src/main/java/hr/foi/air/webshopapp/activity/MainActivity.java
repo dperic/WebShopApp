@@ -30,13 +30,13 @@ import hr.foi.air.webshopapp.fragmenti.FragmentKatalog;
 import hr.foi.air.webshopapp.fragmenti.FragmentKosarica;
 import hr.foi.air.webshopapp.fragmenti.FragmentMain;
 import hr.foi.air.webshopapp.fragmenti.FragmentNarudzbe;
+import hr.foi.air.webshopapp.fragmenti.FragmentSearch;
 
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         sendSyncRequestProducts();
         sendSyncRequestOrders();
         sendSyncRequestBasket();
-
     }
 
     @Override
@@ -85,41 +84,34 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 startActivity(intent);
             }
         }
-        if(id==R.id.search_icon){
-            Intent intent = new Intent(this, ProductDetailsActivity.class);
-            startActivity(intent);
-        }
+
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onDrawerItemSelected(View view, int position) {
         displayView(position);
-
     }
-
 
     private void displayView(int position) {
 
-
         Fragment fragment = null;
-        String title = getString(R.string.app_name);
+
         switch (position) {
             case 0:
                 fragment = new FragmentMain();
-                title = getString(R.string.app_name);
                 break;
             case 1:
                 fragment = new FragmentKatalog();
-                title = getString(R.string.title_katalog);
                 break;
             case 2:
                 fragment = new FragmentKosarica();
-                title=getString(R.string.title_kosarica);
                 break;
             case 3:
                 fragment = new FragmentNarudzbe();
-                title = getString(R.string.title_narudzbe);
+                break;
+            case 4:
+                fragment = new FragmentSearch();
                 break;
 
             default:
@@ -132,10 +124,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
             fragmentTransaction.replace(R.id.container_body, fragment);
             fragmentTransaction.commit();
 
-            // set the toolbar title
-            getSupportActionBar().setTitle(title);
         }
+    }
 
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
     }
 
     public static final String JSON_URL_get_products = "http://webshopappfoi.esy.es/volleyGetProducts.php";
@@ -143,15 +136,12 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     public static final String JSON_URL_get_basket = "http://webshopappfoi.esy.es/volleyGetBasket.php";
 
     public void sendSyncRequestProducts(){
-
         StringRequest stringRequestProducts = new StringRequest(JSON_URL_get_products,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         product product = new product();
                         product.UpdateProducts(response);
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -171,10 +161,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         orders order = new orders();
                         order.UpdateOrders(response);
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -189,15 +177,12 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
     }
 
     public void sendSyncRequestBasket(){
-
         StringRequest stringRequestBasket = new StringRequest(JSON_URL_get_basket,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         productsInOrder basket = new productsInOrder();
                         basket.UpdateBasket(response);
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -206,7 +191,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
                         Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequestBasket);
     }

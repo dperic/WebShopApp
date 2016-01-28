@@ -1,6 +1,8 @@
 package hr.foi.air.webshopapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hr.foi.air.webshopapp.R;
+import hr.foi.air.webshopapp.activity.ProductDetailsActivity;
 import hr.foi.air.webshopapp.dbmodule.product;
 
 /**
@@ -41,6 +44,7 @@ public class ListAdapter extends ArrayAdapter<product>{
             convertView = vi.inflate(R.layout.list_row, null);
 
             holder = new ViewHolder();
+            holder.id=(TextView) convertView.findViewById(R.id.nevidljivID);
             holder.title = (TextView) convertView.findViewById(R.id.title);
             holder.cijena = (TextView) convertView.findViewById(R.id.cijena);
             holder.imageView = (ImageView) convertView.findViewById(R.id.list_image);
@@ -50,6 +54,8 @@ public class ListAdapter extends ArrayAdapter<product>{
             holder = (ViewHolder) convertView.getTag();
         }
         product product = mList.get(position);
+        holder.id.setText(String.valueOf(product.getRemoteId()));
+        Log.d("kurt", String.valueOf(product.getRemoteId()));
         holder.title.setText(product.getName());
         holder.cijena.setText(String.valueOf(product.getPrice()));
         Picasso.with(mContext).load(product.getPicture_link()).into(holder.imageView);
@@ -57,7 +63,7 @@ public class ListAdapter extends ArrayAdapter<product>{
     }
 
     private class ViewHolder{
-        TextView title,cijena;
+        TextView title,cijena,id;
         ImageView imageView;
     }
 
