@@ -15,6 +15,7 @@ import android.widget.Button;
 
 
 import hr.foi.air.webshopapp.R;
+import hr.foi.air.webshopapp.SearchInterface;
 import hr.foi.air.webshopapp.activity.MainActivity;
 
 public class FragmentSearch extends Fragment implements View.OnClickListener{
@@ -54,18 +55,21 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        SearchInterface searchInterface;
         switch (v.getId()) {
             case R.id.btnSearch:
+                searchInterface= new FragmentSearchNaziv();
                 //what to put here
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.mainFrame, new FragmentSearchNaziv(), "fragment_screen");
+                ft.replace(R.id.mainFrame, (Fragment)searchInterface, "fragment_screen");
                 ft.commit();
                 break;
             case R.id.btnSearchKategorija:
+                searchInterface= new FragmentSearchKategorija();
                 FragmentManager fm1 = getFragmentManager();
                 FragmentTransaction ft1 = fm1.beginTransaction();
-                ft1.replace(R.id.mainFrame, new FragmentSearchKategorija(), "fragment_screen");
+                ft1.replace(R.id.mainFrame, (Fragment)searchInterface, "fragment_screen");
                 ft1.commit();
                 break;
         }

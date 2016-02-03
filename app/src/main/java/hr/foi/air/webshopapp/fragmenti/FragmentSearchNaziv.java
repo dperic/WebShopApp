@@ -1,9 +1,7 @@
 package hr.foi.air.webshopapp.fragmenti;
 
 import android.app.Activity;
-
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,12 +17,12 @@ import android.widget.Toast;
 import java.util.List;
 
 import hr.foi.air.webshopapp.R;
-
+import hr.foi.air.webshopapp.SearchInterface;
 import hr.foi.air.webshopapp.activity.ProductDetailsActivity;
 import hr.foi.air.webshopapp.adapter.ListAdapter;
 import hr.foi.air.webshopapp.dbmodule.dbTables.product;
 
-public class FragmentSearchNaziv extends Fragment implements View.OnClickListener {
+public class FragmentSearchNaziv extends Fragment implements View.OnClickListener, SearchInterface{
     private ListView listView;
     private ListAdapter adapter;
     private Button searchButton;
@@ -77,6 +75,11 @@ public class FragmentSearchNaziv extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+       search();
+    }
+
+    @Override
+    public void search() {
         if (inputText.getText().toString().equals("")){
             Toast.makeText(getActivity(), "Niste unijeli pojam", Toast.LENGTH_SHORT).show();
         } else {

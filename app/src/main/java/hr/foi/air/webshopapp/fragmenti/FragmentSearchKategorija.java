@@ -22,12 +22,13 @@ import java.util.List;
 
 import hr.foi.air.webshopapp.R;
 
+import hr.foi.air.webshopapp.SearchInterface;
 import hr.foi.air.webshopapp.activity.ProductDetailsActivity;
 import hr.foi.air.webshopapp.adapter.ListAdapter;
 import hr.foi.air.webshopapp.dbmodule.dbTables.product;
 
 
-public class FragmentSearchKategorija extends Fragment implements View.OnClickListener {
+public class FragmentSearchKategorija extends Fragment implements View.OnClickListener, SearchInterface {
     private ListView listView;
     private ListAdapter adapter;
     private Button searchButton;
@@ -89,6 +90,11 @@ public class FragmentSearchKategorija extends Fragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+       search();
+    }
+
+    @Override
+    public void search() {
         if (checkBoxRacunala.isChecked()) {
             productList.clear();
             productList = product.searchKategorijaRacunala(getResources().getString(R.string.kategorijaRacunala));
