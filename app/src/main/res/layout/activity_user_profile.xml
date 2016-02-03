@@ -16,6 +16,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="top">
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
 
         </LinearLayout>
 

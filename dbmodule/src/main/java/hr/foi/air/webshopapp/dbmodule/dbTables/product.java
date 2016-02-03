@@ -1,8 +1,6 @@
 package hr.foi.air.webshopapp.dbmodule.dbTables;
 
 
-import android.util.Log;
-
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
@@ -12,8 +10,6 @@ import com.activeandroid.query.Select;
 import java.util.List;
 
 import hr.foi.air.webshopapp.dbmodule.adapter.ProductsParseJSON;
-
-
 
 /**
  * Created by Hlevnjak on 10.11.2015..
@@ -98,6 +94,15 @@ public class product extends Model {
                 .where("name LIKE ?", new String[]{'%' + rezultat + '%'})
                 .execute();
     }
+
+    public static List<product> searchKategorijaRacunala(String category){
+        return new Select()
+                .from(product.class)
+                .where("category = ?", category)
+                .execute();
+    }
+
+
 
 
 

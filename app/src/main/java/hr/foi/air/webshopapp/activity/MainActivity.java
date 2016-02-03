@@ -33,7 +33,7 @@ import hr.foi.air.webshopapp.fragmenti.FragmentNarudzbe;
 import hr.foi.air.webshopapp.fragmenti.FragmentSearch;
 
 
-public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
+public class    MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;

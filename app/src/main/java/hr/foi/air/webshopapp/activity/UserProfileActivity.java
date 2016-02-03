@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
@@ -57,7 +58,7 @@ public class UserProfileActivity extends AppCompatActivity{
     private ProgressDialog loading;
 
     private TextView txtLogin;
-
+    private Toolbar mToolbar;
     private Button btnLogout;
     private Button btnSave;
     SharedPreferences LoggedInUser;
@@ -67,6 +68,12 @@ public class UserProfileActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+        mToolbar=(Toolbar)findViewById(R.id.toolbar);
+
+        setSupportActionBar(mToolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         txtLogin = (TextView) findViewById(R.id.txtLoginTime);
 
@@ -102,7 +109,7 @@ public class UserProfileActivity extends AppCompatActivity{
                 saveUser();
             }
         });
-        }
+    }
 
     public void GetUserData(){
         loading = ProgressDialog.show(this, "Please wait...", "Fetching...", false, false);

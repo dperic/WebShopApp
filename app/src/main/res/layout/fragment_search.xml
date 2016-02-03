@@ -1,42 +1,36 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="hr.foi.air.webshopapp.fragmenti.FragmentSearch">
-
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp" >
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pretraga pojma" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/input_search" />
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <Button
             android:id="@+id/btnSearch"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:text="Search"
+            android:text="Pretraga po nazivu"
             android:clickable="true"
             android:textColor="@color/btn_login_bg"/>
-        <ListView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </ListView>
-
+        <Button
+            android:id="@+id/btnSearchKategorija"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Pretraga po kategoriji"
+            android:clickable="true"
+            android:textColor="@color/btn_login_bg"/>
     </LinearLayout>
 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mainFrame">
 
-</FrameLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

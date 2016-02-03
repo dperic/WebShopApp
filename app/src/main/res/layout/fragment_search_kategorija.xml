@@ -1,0 +1,77 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="hr.foi.air.webshopapp.fragmenti.FragmentSearch">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
+
+
+        <CheckBox
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Racunala"
+            android:id="@+id/checkBoxRacunala"
+            />
+        <CheckBox
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Grafičke kartice"
+            android:id="@+id/checkBoxGrafickeKartice"
+             />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kućište"
+            android:id="@+id/checkBoxKuciste"
+            android:layout_gravity="left" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Procesor"
+            android:id="@+id/checkBoxProcesor"
+            android:layout_gravity="left" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Napajanje"
+            android:id="@+id/checkBoxNapajanje"
+            android:layout_gravity="left" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RAM memorije"
+            android:id="@+id/checkBoxRamMemorija"
+            android:layout_gravity="left" />
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matična ploča"
+            android:id="@+id/checkBoxMaticnaPloca"
+            android:layout_gravity="left" />
+
+        <Button
+            android:id="@+id/btnCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:clickable="true"
+            android:textColor="@color/btn_login_bg"/>
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </ListView>
+
+    </LinearLayout>
+
+
+</FrameLayout>
