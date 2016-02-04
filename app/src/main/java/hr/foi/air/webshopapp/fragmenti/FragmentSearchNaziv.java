@@ -1,41 +1,50 @@
 package hr.foi.air.webshopapp.fragmenti;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
 import hr.foi.air.webshopapp.R;
 import hr.foi.air.webshopapp.SearchInterface;
-import hr.foi.air.webshopapp.activity.ProductDetailsActivity;
 import hr.foi.air.webshopapp.adapter.ListAdapter;
+import hr.foi.air.webshopapp.base.BaseFragment;
 import hr.foi.air.webshopapp.dbmodule.dbTables.product;
 
-public class FragmentSearchNaziv extends Fragment implements View.OnClickListener, SearchInterface{
-    private ListView listView;
-    private ListAdapter adapter;
+public class FragmentSearchNaziv extends BaseFragment implements View.OnClickListener, SearchInterface{
+
     private Button searchButton;
     private EditText inputText;
     private hr.foi.air.webshopapp.dbmodule.dbTables.product product;
     private List<product> productList;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    protected int getLayout() {
+        return R.layout.fragment_search_naziv;
     }
 
+    @Override
+    protected int getList() {
+        return R.id.list;
+    }
+
+    @Override
+    protected void init() {
+        product = new product();
+        productList = product.getAllsearch();
+
+        searchButton = (Button) view.findViewById(R.id.btnSearch);
+        searchButton.setOnClickListener(this);
+        inputText = (EditText) view.findViewById(R.id.input_search);
+    }
+
+    @Override
+    protected void getAdapter() {
+        adapter = new ListAdapter(getActivity(), R.layout.list_row, productList);
+    }
+/*
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,7 +59,7 @@ public class FragmentSearchNaziv extends Fragment implements View.OnClickListene
         inputText = (EditText) rootView.findViewById(R.id.input_search);
         listView = (ListView) rootView.findViewById(R.id.list);
         adapter = new ListAdapter(getActivity(), R.layout.list_row, productList);
-        listView.setAdapter(adapter);
+        //listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -61,17 +70,8 @@ public class FragmentSearchNaziv extends Fragment implements View.OnClickListene
             }
         });
         return rootView;
-    }
+    }*/
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
 
     @Override
     public void onClick(View v) {

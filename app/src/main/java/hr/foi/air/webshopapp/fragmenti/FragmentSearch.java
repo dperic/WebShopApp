@@ -1,33 +1,27 @@
 package hr.foi.air.webshopapp.fragmenti;
 
-import android.app.Activity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.AdapterView;
 import android.widget.Button;
-
+import android.widget.ListView;
+import android.widget.TextView;
 
 import hr.foi.air.webshopapp.R;
 import hr.foi.air.webshopapp.SearchInterface;
 import hr.foi.air.webshopapp.activity.MainActivity;
+import hr.foi.air.webshopapp.activity.ProductDetailsActivity;
 
 public class FragmentSearch extends Fragment implements View.OnClickListener{
 
     private Button searchButtonNaziv, searchButtonKategorija ;
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
+    private ListView listView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,17 +34,8 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
 
         searchButtonKategorija = (Button) rootView.findViewById(R.id.btnSearchKategorija);
         searchButtonKategorija.setOnClickListener(this);
+
         return rootView;
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 
     @Override
@@ -59,7 +44,6 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.btnSearch:
                 searchInterface= new FragmentSearchNaziv();
-                //what to put here
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 ft.replace(R.id.mainFrame, (Fragment)searchInterface, "fragment_screen");
@@ -74,4 +58,26 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
                 break;
         }
     }
+
+
+    public void listItem(int idd){
+        //listView = (ListView) rootView.findViewById(R.id.list);
+        //adapter = new ListAdapter(getActivity(), R.layout.list_row, productList);
+        //listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView idd = (TextView) view.findViewById(R.id.nevidljivID);
+                MainActivity main = new MainActivity();
+                //main.Show(idd.getText().toString());
+
+                Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
+                intent.putExtra("remoteId", idd.getText().toString());
+                startActivity(intent);
+
+            }
+
+        });
+    }
+
 }

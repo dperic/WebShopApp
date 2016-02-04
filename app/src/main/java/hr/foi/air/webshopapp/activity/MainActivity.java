@@ -33,7 +33,7 @@ import hr.foi.air.webshopapp.fragmenti.FragmentNarudzbe;
 import hr.foi.air.webshopapp.fragmenti.FragmentSearch;
 
 
-public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
+public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener {
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
@@ -193,5 +193,14 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequestBasket);
     }
+
+        /*OnclickInterface click = new OnclickInterface() {
+            @Override
+            public void Show(String idd) {
+
+                intent.putExtra("remoteId", idd);
+                startActivity(intent);
+            }
+        };*/
 
 }

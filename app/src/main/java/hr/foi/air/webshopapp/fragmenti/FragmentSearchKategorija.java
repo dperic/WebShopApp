@@ -1,41 +1,25 @@
 package hr.foi.air.webshopapp.fragmenti;
 
 
-import android.app.Activity;
-
-import android.content.Intent;
-
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
-
-import android.widget.ListView;
-import android.widget.TextView;
-
 
 import java.util.List;
 
 import hr.foi.air.webshopapp.R;
-
 import hr.foi.air.webshopapp.SearchInterface;
-import hr.foi.air.webshopapp.activity.ProductDetailsActivity;
 import hr.foi.air.webshopapp.adapter.ListAdapter;
+import hr.foi.air.webshopapp.base.BaseFragment;
 import hr.foi.air.webshopapp.dbmodule.dbTables.product;
 
 
-public class FragmentSearchKategorija extends Fragment implements View.OnClickListener, SearchInterface {
-    private ListView listView;
-    private ListAdapter adapter;
+public class FragmentSearchKategorija extends BaseFragment implements View.OnClickListener, SearchInterface {
     private Button searchButton;
     private CheckBox checkBoxRacunala, checkBoxGrafickeKartice, checkBoxKuciste, checkBoxProcesor, checkBoxNapajanje, checkBoxRamMemorija, checkBoxMaticnaPloca;
     private hr.foi.air.webshopapp.dbmodule.dbTables.product product;
     private List<product> productList;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,49 +27,35 @@ public class FragmentSearchKategorija extends Fragment implements View.OnClickLi
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected int getLayout() {
+        return R.layout.fragment_search_kategorija;
+    }
 
-        View rootView = inflater.inflate(R.layout.fragment_search_kategorija, container, false);
+    @Override
+    protected int getList() {
+        return R.id.list;
+    }
 
+    @Override
+    protected void init() {
         product = new product();
         productList = product.getAllsearch();
 
-        checkBoxRacunala = (CheckBox) rootView.findViewById(R.id.checkBoxRacunala);
+        checkBoxRacunala = (CheckBox) view.findViewById(R.id.checkBoxRacunala);
 
-        checkBoxGrafickeKartice = (CheckBox) rootView.findViewById(R.id.checkBoxGrafickeKartice);
-        checkBoxKuciste = (CheckBox) rootView.findViewById(R.id.checkBoxKuciste);
-        checkBoxProcesor = (CheckBox) rootView.findViewById(R.id.checkBoxProcesor);
-        checkBoxNapajanje = (CheckBox) rootView.findViewById(R.id.checkBoxNapajanje);
-        checkBoxRamMemorija = (CheckBox) rootView.findViewById(R.id.checkBoxRamMemorija);
-        checkBoxMaticnaPloca = (CheckBox) rootView.findViewById(R.id.checkBoxMaticnaPloca);
-
-
-        listView = (ListView) rootView.findViewById(R.id.list);
-        adapter = new ListAdapter(getActivity(), R.layout.list_row, productList);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView idd = (TextView) view.findViewById(R.id.nevidljivID);
-                Intent intent = new Intent(getActivity(), ProductDetailsActivity.class);
-                intent.putExtra("remoteId", idd.getText().toString());
-                startActivity(intent);
-            }
-        });
-        searchButton = (Button) rootView.findViewById(R.id.btnCheck);
+        checkBoxGrafickeKartice = (CheckBox) view.findViewById(R.id.checkBoxGrafickeKartice);
+        checkBoxKuciste = (CheckBox) view.findViewById(R.id.checkBoxKuciste);
+        checkBoxProcesor = (CheckBox) view.findViewById(R.id.checkBoxProcesor);
+        checkBoxNapajanje = (CheckBox) view.findViewById(R.id.checkBoxNapajanje);
+        checkBoxRamMemorija = (CheckBox) view.findViewById(R.id.checkBoxRamMemorija);
+        checkBoxMaticnaPloca = (CheckBox) view.findViewById(R.id.checkBoxMaticnaPloca);
+        searchButton = (Button) view.findViewById(R.id.btnCheck);
         searchButton.setOnClickListener(this);
-        return rootView;
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
+    protected void getAdapter() {
+        adapter = new ListAdapter(getActivity(), R.layout.list_row, productList);
     }
 
     @Override
